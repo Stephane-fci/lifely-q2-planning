@@ -75,7 +75,8 @@ tr:hover{background:var(--card2)}
 </div>
 
 <div class="tabs" id="tabBar">
-  <div class="tab active" data-tab="summary">📝 Summary</div>
+  <div class="tab active" data-tab="wow">📈 WoW</div>
+  <div class="tab" data-tab="summary">📝 Summary</div>
   <div class="tab" data-tab="overview">🌍 Q1 by Country</div>
   <div class="tab" data-tab="country">🔍 By Region</div>
   <div class="tab" data-tab="products">🛏️ Products Cross-Country</div>
@@ -88,7 +89,109 @@ tr:hover{background:var(--card2)}
 <div class="content">
 
 <!-- ========== SUMMARY ========== -->
-<div class="tab-content active" id="summary">
+<div class="tab-content active" id="wow">
+  <div class="section-title">📈 Week-over-Week: Mar 30 – Apr 5 vs Mar 23 – 29</div>
+
+  <div class="metrics-row">
+    <div class="mc"><div class="l">Total Revenue (all)</div><div class="v">$84,523</div><div class="s">$76,511 prev → <span class="up">+10%</span></div></div>
+    <div class="mc"><div class="l">Total Orders</div><div class="v">94</div><div class="s">79 prev → <span class="up">+19%</span></div></div>
+    <div class="mc"><div class="l">Total Ad Spend</div><div class="v">$29,682</div><div class="s">$27,507 prev → <span class="down">+8%</span></div></div>
+    <div class="mc"><div class="l">Blended MER</div><div class="v">2.85x</div><div class="s">2.78x prev → <span class="up">+3%</span></div></div>
+  </div>
+
+  <!-- US -->
+  <div class="chart-box" style="border-left:4px solid var(--us)">
+    <h3>🇺🇸 United States — cushiehome.com (USD)</h3>
+    <table>
+      <thead><tr><th>Metric</th><th></th><th class="num">Mar 23–29</th><th class="num">Mar 30–Apr 5</th><th class="num">WoW Δ</th></tr></thead>
+      <tbody>
+        <tr><td colspan="2" style="color:var(--cushie);font-weight:700">🛋️ Cushie US</td><td></td><td></td><td></td></tr>
+        <tr><td></td><td>Orders</td><td class="num">40</td><td class="num">32</td><td class="num"><span class="tag tag-red">-20%</span></td></tr>
+        <tr><td></td><td>Net Revenue</td><td class="num">$36,015</td><td class="num">$29,105</td><td class="num"><span class="tag tag-red">-19%</span></td></tr>
+        <tr><td></td><td>AOV</td><td class="num">$900</td><td class="num">$910</td><td class="num"><span class="tag tag-green">+1%</span></td></tr>
+        <tr><td></td><td>Meta Spend</td><td class="num">$4,664</td><td class="num">$4,709</td><td class="num"><span class="tag tag-yellow">+1%</span></td></tr>
+        <tr><td></td><td>Google Spend</td><td class="num">$3,462</td><td class="num">$3,542</td><td class="num"><span class="tag tag-yellow">+2%</span></td></tr>
+        <tr style="background:rgba(139,92,246,.1)"><td></td><td><strong>MER</strong></td><td class="num"><strong>4.43x</strong></td><td class="num"><strong>3.53x</strong></td><td class="num"><span class="tag tag-red">-20%</span></td></tr>
+        <tr><td colspan="5" style="height:8px;border:none"></td></tr>
+        <tr><td colspan="2" style="color:var(--snuggle);font-weight:700">🛏️ Snuggle US</td><td></td><td></td><td></td></tr>
+        <tr><td></td><td>Orders</td><td class="num">6</td><td class="num">9</td><td class="num"><span class="tag tag-green">+50%</span></td></tr>
+        <tr><td></td><td>Net Revenue</td><td class="num">$8,554</td><td class="num">$9,468</td><td class="num"><span class="tag tag-green">+11%</span></td></tr>
+        <tr><td></td><td>AOV</td><td class="num">$1,426</td><td class="num">$1,052</td><td class="num"><span class="tag tag-red">-26%</span></td></tr>
+        <tr><td></td><td>Meta Spend</td><td class="num">$5,871</td><td class="num">$5,945</td><td class="num"><span class="tag tag-yellow">+1%</span></td></tr>
+        <tr><td></td><td>Google Spend</td><td class="num">$1,238</td><td class="num">$1,295</td><td class="num"><span class="tag tag-yellow">+5%</span></td></tr>
+        <tr style="background:rgba(236,72,153,.1)"><td></td><td><strong>MER</strong></td><td class="num"><strong>1.20x</strong></td><td class="num"><strong>1.31x</strong></td><td class="num"><span class="tag tag-yellow">+9%</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">US Cushie had a down week (-20% orders). Snuggle US picked up but MER still below 2x — spending more than revenue on Snuggle.</p>
+  </div>
+
+  <!-- AU -->
+  <div class="chart-box" style="border-left:4px solid var(--au)">
+    <h3>🇦🇺 Australia — lifely.com.au (AUD)</h3>
+    <table>
+      <thead><tr><th>Metric</th><th></th><th class="num">Mar 23–29</th><th class="num">Mar 30–Apr 5</th><th class="num">WoW Δ</th></tr></thead>
+      <tbody>
+        <tr><td colspan="2" style="color:var(--cushie);font-weight:700">🛋️ Cushie AU</td><td></td><td></td><td></td></tr>
+        <tr><td></td><td>Sessions</td><td class="num">5,531</td><td class="num">6,119</td><td class="num"><span class="tag tag-green">+11%</span></td></tr>
+        <tr><td></td><td>ATC Rate</td><td class="num">1.52%</td><td class="num">2.04%</td><td class="num"><span class="tag tag-green">+34%</span></td></tr>
+        <tr><td></td><td>Orders</td><td class="num">19</td><td class="num">36</td><td class="num"><span class="tag tag-green">+89%</span></td></tr>
+        <tr><td></td><td>CVR</td><td class="num">0.34%</td><td class="num">0.59%</td><td class="num"><span class="tag tag-green">+71%</span></td></tr>
+        <tr><td></td><td>Net Revenue</td><td class="num">$16,420</td><td class="num">$33,973</td><td class="num"><span class="tag tag-green">+107% ⭐</span></td></tr>
+        <tr><td></td><td>AOV</td><td class="num">$864</td><td class="num">$944</td><td class="num"><span class="tag tag-green">+9%</span></td></tr>
+        <tr><td></td><td>Meta Spend</td><td class="num">$6,477</td><td class="num">$6,616</td><td class="num"><span class="tag tag-yellow">+2%</span></td></tr>
+        <tr><td></td><td>Google Spend</td><td class="num">$1,572</td><td class="num">$2,191</td><td class="num"><span class="tag tag-yellow">+39%</span></td></tr>
+        <tr style="background:rgba(139,92,246,.1)"><td></td><td><strong>MER</strong></td><td class="num"><strong>2.04x</strong></td><td class="num"><strong>3.86x</strong></td><td class="num"><span class="tag tag-green">+89%</span></td></tr>
+        <tr><td colspan="5" style="height:8px;border:none"></td></tr>
+        <tr><td colspan="2" style="color:var(--snuggle);font-weight:700">🛏️ Snuggle AU</td><td></td><td></td><td></td></tr>
+        <tr><td></td><td>Sessions</td><td class="num">4,936</td><td class="num">8,250</td><td class="num"><span class="tag tag-green">+67%</span></td></tr>
+        <tr><td></td><td>ATC Rate</td><td class="num">0.59%</td><td class="num">0.45%</td><td class="num"><span class="tag tag-red">-24%</span></td></tr>
+        <tr><td></td><td>Orders</td><td class="num">13</td><td class="num">11</td><td class="num"><span class="tag tag-red">-15%</span></td></tr>
+        <tr><td></td><td>CVR</td><td class="num">0.26%</td><td class="num">0.13%</td><td class="num"><span class="tag tag-red">-49%</span></td></tr>
+        <tr><td></td><td>Net Revenue</td><td class="num">$15,522</td><td class="num">$11,977</td><td class="num"><span class="tag tag-red">-23%</span></td></tr>
+        <tr><td></td><td>AOV</td><td class="num">$1,194</td><td class="num">$1,089</td><td class="num"><span class="tag tag-red">-9%</span></td></tr>
+        <tr><td></td><td>Meta Spend</td><td class="num">$3,000</td><td class="num">$3,800</td><td class="num"><span class="tag tag-yellow">+27%</span></td></tr>
+        <tr><td></td><td>Google Spend</td><td class="num">$1,223</td><td class="num">$1,584</td><td class="num"><span class="tag tag-yellow">+30%</span></td></tr>
+        <tr style="background:rgba(236,72,153,.1)"><td></td><td><strong>MER</strong></td><td class="num"><strong>3.68x</strong></td><td class="num"><strong>2.22x</strong></td><td class="num"><span class="tag tag-red">-40%</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">🟢 Cushie AU had a standout week: +107% revenue, ATC recovered to 2.04%, MER nearly doubled to 3.86x. 🔴 Snuggle AU opposite: sessions surged +67% but CVR halved — traffic quality issue. More spend, fewer conversions.</p>
+  </div>
+
+  <!-- CA -->
+  <div class="chart-box" style="border-left:4px solid var(--ca)">
+    <h3>🇨🇦 Canada — lifely.com.au (AUD)</h3>
+    <table>
+      <thead><tr><th>Metric</th><th></th><th class="num">Mar 23–29</th><th class="num">Mar 30–Apr 5</th><th class="num">WoW Δ</th></tr></thead>
+      <tbody>
+        <tr><td colspan="2" style="color:var(--cushie);font-weight:700">🛋️ Cushie CA</td><td></td><td></td><td></td></tr>
+        <tr><td></td><td>Orders</td><td class="num">1</td><td class="num">6</td><td class="num"><span class="tag tag-green">+500%</span></td></tr>
+        <tr><td></td><td>Net Revenue</td><td class="num">$1,325</td><td class="num">$7,874</td><td class="num"><span class="tag tag-green">+494%</span></td></tr>
+        <tr><td colspan="5" style="height:8px;border:none"></td></tr>
+        <tr><td colspan="2" style="color:var(--snuggle);font-weight:700">🛏️ Snuggle CA</td><td></td><td></td><td></td></tr>
+        <tr><td></td><td>Sessions</td><td class="num">1,014</td><td class="num">1,056</td><td class="num"><span class="tag tag-yellow">+4%</span></td></tr>
+        <tr><td></td><td>ATC Rate</td><td class="num">1.87%</td><td class="num">2.18%</td><td class="num"><span class="tag tag-green">+17%</span></td></tr>
+        <tr><td></td><td>Orders</td><td class="num">5</td><td class="num">2</td><td class="num"><span class="tag tag-red">-60%</span></td></tr>
+        <tr><td></td><td>Net Revenue</td><td class="num">$6,434</td><td class="num">$2,078</td><td class="num"><span class="tag tag-red">-68%</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">Cushie CA had a strong week (6 orders vs 1). Snuggle CA sessions stable but orders dropped — small sample, normal variance.</p>
+  </div>
+
+  <!-- Weekly Callouts -->
+  <div class="chart-box" style="border-left:4px solid var(--primary);background:linear-gradient(135deg,var(--card) 0%,rgba(139,92,246,.05) 100%)">
+    <h3>💡 Weekly Signals</h3>
+    <div style="font-size:14px;line-height:2">
+      <div>🟢 <strong>Cushie AU is recovering</strong> — ATC back to 2.04% (was 1.52%), CVR nearly doubled, revenue +107%. Best week since January.</div>
+      <div>🔴 <strong>Snuggle AU traffic quality problem</strong> — sessions +67% but CVR -49%. Throwing money at bad traffic. Spend up 29%, revenue down 23%.</div>
+      <div>🔴 <strong>US Cushie dipped</strong> — -20% orders on flat spend. Could be weekly variance, worth watching next week.</div>
+      <div>🔴 <strong>US Snuggle still underwater</strong> — $7.2K spend for $9.5K revenue = 1.31x MER. Losing money after COGS.</div>
+      <div>🟢 <strong>Cushie CA breakout continues</strong> — 6 orders in one week (was barely 7 all Q1). Organic/spillover or early paid traction?</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="tab-content" id="summary">
   <div style="max-width:900px;margin:0 auto">
     <div style="text-align:center;padding:40px 0 30px">
       <div style="font-size:48px;margin-bottom:8px">🛋️</div>
