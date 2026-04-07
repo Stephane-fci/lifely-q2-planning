@@ -77,7 +77,7 @@ tr:hover{background:var(--card2)}
 <div class="tabs" id="tabBar">
   <div class="tab active" data-tab="summary">📝 Summary</div>
   <div class="tab" data-tab="overview">🌍 Q1 by Country</div>
-  <div class="tab" data-tab="country">🔍 Country Deep Dive</div>
+  <div class="tab" data-tab="country">🔍 By Region</div>
   <div class="tab" data-tab="products">🛏️ Products Cross-Country</div>
   <div class="tab" data-tab="targets">🎯 Q1 vs Target + Q2</div>
   <div class="tab" data-tab="mer">📣 MER & Ads</div>
@@ -221,9 +221,14 @@ tr:hover{background:var(--card2)}
   </div>
 </div>
 
-<!-- ========== COUNTRY DEEP DIVE ========== -->
+<!-- ========== BY REGION ========== -->
 <div class="tab-content" id="country">
-  <div class="section-title">🔍 Country Deep Dive</div>
+  <div class="section-title">🔍 By Region — Product Performance</div>
+
+  <div class="warn-box">
+    📊 <strong>Metrics per product:</strong> Sessions · ATC Rate · CVR · AOV · RPS · Orders · Revenue · Ad Spend (Meta + Google) · ROAS · MER · Q1 Target vs Actual
+    <br>⚠️ <strong>GA4 limitation:</strong> Sessions/ATC/CVR only available for AU store (lifely.com.au) right now. cushiehome.com has no GA4 connected yet — US sessions show "N/A". Google Ads spend is a manual estimate (~$13K AUD/mo per product) until Allen shares the account ID.
+  </div>
 
   <div class="country-tabs">
     <div class="country-tab us active" data-country="us">🇺🇸 United States</div>
@@ -235,140 +240,193 @@ tr:hover{background:var(--card2)}
   <!-- US -->
   <div id="country-us">
     <div class="chart-box" style="border-left:4px solid var(--us)">
-      <h3>🇺🇸 United States — cushiehome.com</h3>
-      <div class="kpi-grid">
-        <div class="kpi"><div class="lbl">Q1 Revenue</div><div class="val">$586K USD</div><div class="sub">Net of discounts</div></div>
-        <div class="kpi"><div class="lbl">Orders</div><div class="val">651</div><div class="sub">182→211→247</div></div>
-        <div class="kpi"><div class="lbl">Blended MER</div><div class="val" style="color:var(--success)">5.58x</div><div class="sub">Meta only</div></div>
-        <div class="kpi"><div class="lbl">Discount Rate</div><div class="val" style="color:var(--warning)">23%</div><div class="sub">$177K Q1</div></div>
-      </div>
+      <h3>🇺🇸 United States — cushiehome.com (USD)</h3>
+      <p class="note" style="margin-top:0">⚠️ GA4 not connected for cushiehome.com — Sessions, ATC Rate, CVR, RPS show "N/A". Ad spend includes Google estimate ($13K USD/mo per product ≈ $19K AUD).</p>
     </div>
 
     <div class="product-box cushie">
-      <h3 style="color:var(--cushie);margin-bottom:12px">🛋️ Cushie Modular — US</h3>
+      <h3 style="color:var(--cushie);margin-bottom:12px">🛋️ Cushie — US</h3>
       <table>
-        <thead><tr><th>Month</th><th class="num">Orders</th><th class="num">Units</th><th class="num">Net Rev</th><th class="num">Meta Spend</th><th class="num">Meta Rev</th><th class="num">ROAS</th><th class="num">MER</th><th class="num">vs Target</th></tr></thead>
+        <thead><tr><th>Metric</th><th class="num">Jan</th><th class="num">Feb</th><th class="num">Mar</th><th class="num">Q1 Total</th><th class="num">Q1 Target</th><th class="num">Δ vs Target</th></tr></thead>
         <tbody>
-          <tr><td>Jan</td><td class="num">148</td><td class="num">164</td><td class="num">$128,773</td><td class="num">$28,482</td><td class="num">$85,365</td><td class="num">3.0x</td><td class="num"><span class="tag tag-green">4.52x</span></td><td class="num"><span class="tag tag-red">-12%</span></td></tr>
-          <tr><td>Feb</td><td class="num">176</td><td class="num">195</td><td class="num">$147,672</td><td class="num">$20,133</td><td class="num">$88,875</td><td class="num">4.4x</td><td class="num"><span class="tag tag-green">7.33x</span></td><td class="num"><span class="tag tag-red">-10%</span></td></tr>
-          <tr><td>Mar</td><td class="num">207</td><td class="num">233</td><td class="num">$173,637</td><td class="num">$20,374</td><td class="num">$61,518</td><td class="num">3.0x</td><td class="num"><span class="tag tag-green">8.52x ⭐</span></td><td class="num"><span class="tag tag-red">-6%</span></td></tr>
-          <tr style="font-weight:700"><td>Q1</td><td class="num">531</td><td class="num">592</td><td class="num">$450,082</td><td class="num">$68,989</td><td class="num">$235,757</td><td class="num">3.4x</td><td class="num">6.52x</td><td class="num"><span class="tag tag-red">-10%</span></td></tr>
+          <tr><td>Sessions</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>ATC Rate</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>CVR</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Orders</td><td class="num">148</td><td class="num">176</td><td class="num">207</td><td class="num" style="font-weight:700">531</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>AOV</td><td class="num">$870</td><td class="num">$839</td><td class="num">$839</td><td class="num">$848</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>RPS</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Revenue (USD)</td><td class="num">$128,773</td><td class="num">$147,672</td><td class="num">$173,637</td><td class="num" style="font-weight:700">$450,082</td><td class="num">$566K *</td><td class="num"><span class="tag tag-red">-20%</span></td></tr>
+          <tr><td>Meta Spend</td><td class="num">$28,482</td><td class="num">$20,133</td><td class="num">$20,374</td><td class="num">$68,989</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Google Spend (est)</td><td class="num">$13,500</td><td class="num">$13,500</td><td class="num">$13,500</td><td class="num">$40,500</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Total Ad Spend</td><td class="num">$41,982</td><td class="num">$33,633</td><td class="num">$33,874</td><td class="num">$109,489</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Meta ROAS</td><td class="num">3.0x</td><td class="num">4.4x</td><td class="num">3.0x</td><td class="num">3.4x</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr style="background:rgba(139,92,246,.1)"><td><strong>MER (incl Google)</strong></td><td class="num">3.07x</td><td class="num">4.39x</td><td class="num">5.13x</td><td class="num" style="font-weight:700">4.11x</td><td class="num">12x</td><td class="num"><span class="tag tag-red">-66%</span></td></tr>
+          <tr style="background:rgba(139,92,246,.05);color:var(--text2);font-size:11px"><td>MER (Meta only)</td><td class="num">4.52x</td><td class="num">7.33x</td><td class="num">8.52x</td><td class="num">6.52x</td><td class="num">—</td><td class="num">—</td></tr>
         </tbody>
       </table>
-      <p class="note">Target from sheet: Jan $245K AUD · Feb $273K AUD · Mar $300K AUD. Converting to USD: ~$170K/$189K/$208K. Actual below target by 6-12% every month, but MER is accelerating dramatically.</p>
+      <p class="note">* Target $818K AUD ÷ 1.4451 = $566K USD. Google spend is a $13K USD/mo estimate — adjust on the Targets tab once Allen shares the real number.</p>
     </div>
 
     <div class="product-box snuggle">
       <h3 style="color:var(--snuggle);margin-bottom:12px">🛏️ Snuggle — US</h3>
       <table>
-        <thead><tr><th>Month</th><th class="num">Orders</th><th class="num">Units</th><th class="num">Net Rev</th><th class="num">Meta Spend</th><th class="num">Meta Rev</th><th class="num">ROAS</th><th class="num">MER</th><th class="num">vs Target</th></tr></thead>
+        <thead><tr><th>Metric</th><th class="num">Jan</th><th class="num">Feb</th><th class="num">Mar</th><th class="num">Q1 Total</th><th class="num">Q1 Target</th><th class="num">Δ vs Target</th></tr></thead>
         <tbody>
-          <tr><td>Jan</td><td class="num">31</td><td class="num">31</td><td class="num">$35,535</td><td class="num">$3,070</td><td class="num">$20,049</td><td class="num">6.5x</td><td class="num"><span class="tag tag-green">11.58x</span></td><td class="num"><span class="tag tag-green">+49%</span></td></tr>
-          <tr><td>Feb</td><td class="num">38</td><td class="num">38</td><td class="num">$41,210</td><td class="num">$9,246</td><td class="num">$26,051</td><td class="num">2.8x</td><td class="num"><span class="tag tag-green">4.46x</span></td><td class="num"><span class="tag tag-green">+128%</span></td></tr>
-          <tr><td>Mar</td><td class="num">51</td><td class="num">52</td><td class="num">$59,651</td><td class="num">$24,075</td><td class="num">$62,650</td><td class="num">2.6x</td><td class="num"><span class="tag tag-red">2.48x ⚠️</span></td><td class="num"><span class="tag tag-green">+47%</span></td></tr>
-          <tr style="font-weight:700"><td>Q1</td><td class="num">120</td><td class="num">121</td><td class="num">$136,396</td><td class="num">$36,391</td><td class="num">$108,751</td><td class="num">3.0x</td><td class="num">3.75x</td><td class="num"><span class="tag tag-green">+124%</span></td></tr>
+          <tr><td>Sessions</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>ATC Rate</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>CVR</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Orders</td><td class="num">31</td><td class="num">38</td><td class="num">51</td><td class="num" style="font-weight:700">120</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>AOV</td><td class="num">$1,476</td><td class="num">$1,399</td><td class="num">$1,511</td><td class="num">$1,467</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>RPS</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Revenue (USD)</td><td class="num">$35,535</td><td class="num">$41,210</td><td class="num">$59,651</td><td class="num" style="font-weight:700">$136,396</td><td class="num">$135K *</td><td class="num"><span class="tag tag-green">+1%</span></td></tr>
+          <tr><td>Meta Spend</td><td class="num">$3,070</td><td class="num">$9,246</td><td class="num">$24,075</td><td class="num">$36,391</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Google Spend (est)</td><td class="num">$6,500</td><td class="num">$6,500</td><td class="num">$6,500</td><td class="num">$19,500</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Total Ad Spend</td><td class="num">$9,570</td><td class="num">$15,746</td><td class="num">$30,575</td><td class="num">$55,891</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Meta ROAS</td><td class="num">6.5x</td><td class="num">2.8x</td><td class="num">2.6x</td><td class="num">3.0x</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr style="background:rgba(236,72,153,.1)"><td><strong>MER (incl Google)</strong></td><td class="num">3.71x</td><td class="num">2.62x</td><td class="num">1.95x</td><td class="num" style="font-weight:700">2.44x</td><td class="num">12x</td><td class="num"><span class="tag tag-red">-80%</span></td></tr>
+          <tr style="background:rgba(236,72,153,.05);color:var(--text2);font-size:11px"><td>MER (Meta only)</td><td class="num">11.58x</td><td class="num">4.46x</td><td class="num">2.48x</td><td class="num">3.75x</td><td class="num">—</td><td class="num">—</td></tr>
         </tbody>
       </table>
-      <p class="note">Smashing revenue targets (+124% vs sheet) but MER collapsed as spend scaled 8x. The volume is there but efficiency needs fixing urgently. March MER of 2.48x is below most margin profiles.</p>
+      <p class="note">* Target $196K AUD ÷ 1.4451 = $135K USD. Revenue target hit, but MER including Google is only 2.44x vs model's 12x. Huge efficiency gap.</p>
     </div>
   </div>
 
   <!-- AU -->
   <div id="country-au" style="display:none">
     <div class="chart-box" style="border-left:4px solid var(--au)">
-      <h3>🇦🇺 Australia — lifely.com.au (Cushie products only)</h3>
-      <div class="kpi-grid">
-        <div class="kpi"><div class="lbl">Q1 Revenue</div><div class="val">$445K AUD</div><div class="sub">Gross line items</div></div>
-        <div class="kpi"><div class="lbl">Orders</div><div class="val">383</div><div class="sub">148→115→120</div></div>
-        <div class="kpi"><div class="lbl">Blended MER</div><div class="val" style="color:var(--success)">5.30x</div><div class="sub">Meta only</div></div>
-        <div class="kpi"><div class="lbl">vs Target</div><div class="val" style="color:var(--success)">+3%</div><div class="sub">$431K tgt</div></div>
-      </div>
+      <h3>🇦🇺 Australia — lifely.com.au (AUD)</h3>
+      <p class="note" style="margin-top:0">GA4 sessions/ATC/CVR from landing page data on lifely.com.au. Revenue = Shopify Cushie/Snuggle line items.</p>
     </div>
 
     <div class="product-box cushie">
-      <h3 style="color:var(--cushie);margin-bottom:12px">🛋️ Cushie Modular — AU</h3>
+      <h3 style="color:var(--cushie);margin-bottom:12px">🛋️ Cushie — AU</h3>
       <table>
-        <thead><tr><th>Month</th><th class="num">Orders</th><th class="num">Units</th><th class="num">Gross Rev</th><th class="num">Meta Spend</th><th class="num">Meta Rev</th><th class="num">ROAS</th><th class="num">MER</th><th class="num">vs Target</th></tr></thead>
+        <thead><tr><th>Metric</th><th class="num">Jan</th><th class="num">Feb</th><th class="num">Mar</th><th class="num">Q1 Total</th><th class="num">Q1 Target</th><th class="num">Δ vs Target</th></tr></thead>
         <tbody>
-          <tr><td>Jan</td><td class="num">109</td><td class="num">123</td><td class="num">$103,548</td><td class="num">$18,369</td><td class="num">$98,335</td><td class="num">5.4x</td><td class="num"><span class="tag tag-green">5.64x</span></td><td class="num"><span class="tag tag-red">-25%</span></td></tr>
-          <tr><td>Feb</td><td class="num">76</td><td class="num">83</td><td class="num">$73,532</td><td class="num">$10,267</td><td class="num">$78,953</td><td class="num">7.7x</td><td class="num"><span class="tag tag-green">7.16x</span></td><td class="num"><span class="tag tag-red">-40%</span></td></tr>
-          <tr><td>Mar</td><td class="num">86</td><td class="num">102</td><td class="num">$83,143</td><td class="num">$13,807</td><td class="num">$58,430</td><td class="num">4.2x</td><td class="num"><span class="tag tag-green">6.02x</span></td><td class="num"><span class="tag tag-red">-51%</span></td></tr>
-          <tr style="font-weight:700"><td>Q1</td><td class="num">271</td><td class="num">308</td><td class="num">$260,223</td><td class="num">$42,443</td><td class="num">$235,717</td><td class="num">5.6x</td><td class="num">6.13x</td><td class="num"><span class="tag tag-red">-39%</span></td></tr>
+          <tr><td>Sessions</td><td class="num">23,201</td><td class="num">17,423</td><td class="num">23,331</td><td class="num" style="font-weight:700">63,955</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>ATC Rate</td><td class="num">2.47%</td><td class="num">2.19%</td><td class="num">1.65%</td><td class="num">2.10%</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>CVR</td><td class="num">0.20%</td><td class="num">0.23%</td><td class="num">0.18%</td><td class="num">0.20%</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Orders</td><td class="num">109</td><td class="num">76</td><td class="num">86</td><td class="num" style="font-weight:700">271</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>AOV</td><td class="num">$950</td><td class="num">$967</td><td class="num">$967</td><td class="num">$960</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>RPS</td><td class="num">$4.46</td><td class="num">$4.22</td><td class="num">$3.56</td><td class="num">$4.07</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Revenue (AUD)</td><td class="num">$103,548</td><td class="num">$73,532</td><td class="num">$83,143</td><td class="num" style="font-weight:700">$260,223</td><td class="num">$429,545</td><td class="num"><span class="tag tag-red">-39%</span></td></tr>
+          <tr><td>Meta Spend</td><td class="num">$18,369</td><td class="num">$10,267</td><td class="num">$13,807</td><td class="num">$42,443</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Google Spend (est)</td><td class="num">$19,500</td><td class="num">$19,500</td><td class="num">$19,500</td><td class="num">$58,500</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Total Ad Spend</td><td class="num">$37,869</td><td class="num">$29,767</td><td class="num">$33,307</td><td class="num">$100,943</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Meta ROAS</td><td class="num">5.4x</td><td class="num">7.7x</td><td class="num">4.2x</td><td class="num">5.6x</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr style="background:rgba(139,92,246,.1)"><td><strong>MER (incl Google)</strong></td><td class="num">2.73x</td><td class="num">2.47x</td><td class="num">2.50x</td><td class="num" style="font-weight:700">2.58x</td><td class="num">12.1x</td><td class="num"><span class="tag tag-red">-79%</span></td></tr>
+          <tr style="background:rgba(139,92,246,.05);color:var(--text2);font-size:11px"><td>MER (Meta only)</td><td class="num">5.64x</td><td class="num">7.16x</td><td class="num">6.02x</td><td class="num">6.13x</td><td class="num">—</td><td class="num">—</td></tr>
         </tbody>
       </table>
-      <p class="note">Sheet Q1 target: $430K AUD. Actual: $260K. <strong>Missed by 39%.</strong> MER is strong (6.13x) but volume is way below model. Investigation: stock, creative fatigue, or over-ambitious target?</p>
+      <p class="note">Revenue missed by 39% vs $430K target. Sessions dropped 25% Jan→Feb. ATC rate declining (2.47→1.65%). Something changed post-Jan — creative fatigue, traffic quality drop, or competition.</p>
     </div>
 
     <div class="product-box snuggle">
       <h3 style="color:var(--snuggle);margin-bottom:12px">🛏️ Snuggle — AU</h3>
       <table>
-        <thead><tr><th>Month</th><th class="num">Orders</th><th class="num">Units</th><th class="num">Gross Rev</th><th class="num">Meta Spend</th><th class="num">Meta Rev</th><th class="num">ROAS</th><th class="num">MER</th><th class="num">vs Target</th></tr></thead>
+        <thead><tr><th>Metric</th><th class="num">Jan</th><th class="num">Feb</th><th class="num">Mar</th><th class="num">Q1 Total</th><th class="num">Q1 Target</th><th class="num">Δ vs Target</th></tr></thead>
         <tbody>
-          <tr><td>Jan</td><td class="num">39</td><td class="num">40</td><td class="num">$46,320</td><td class="num">$14,011</td><td class="num">$128,265</td><td class="num">9.2x</td><td class="num"><span class="tag tag-green">3.31x</span></td><td class="num"><span class="tag tag-green">+33%</span></td></tr>
-          <tr><td>Feb</td><td class="num">39</td><td class="num">41</td><td class="num">$45,676</td><td class="num">$14,076</td><td class="num">$100,599</td><td class="num">7.1x</td><td class="num"><span class="tag tag-green">3.24x</span></td><td class="num"><span class="tag tag-red">-21%</span></td></tr>
-          <tr><td>Mar</td><td class="num">34</td><td class="num">35</td><td class="num">$39,540</td><td class="num">$13,817</td><td class="num">$83,656</td><td class="num">6.1x</td><td class="num"><span class="tag tag-yellow">2.86x</span></td><td class="num"><span class="tag tag-red">-32%</span></td></tr>
-          <tr style="font-weight:700"><td>Q1</td><td class="num">112</td><td class="num">116</td><td class="num">$131,536</td><td class="num">$41,904</td><td class="num">$312,521</td><td class="num">7.5x</td><td class="num">3.14x</td><td class="num"><span class="tag tag-red">-13%</span></td></tr>
+          <tr><td>Sessions</td><td class="num">13,082</td><td class="num">13,534</td><td class="num">17,166</td><td class="num" style="font-weight:700">43,782</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>ATC Rate</td><td class="num">2.35%</td><td class="num">1.60%</td><td class="num">0.89%</td><td class="num" style="color:var(--danger)">1.55% ↓</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>CVR</td><td class="num">0.23%</td><td class="num">0.22%</td><td class="num">0.09%</td><td class="num" style="color:var(--danger)">0.18% ↓</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Orders</td><td class="num">39</td><td class="num">39</td><td class="num">34</td><td class="num" style="font-weight:700">112</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>AOV</td><td class="num">$1,188</td><td class="num">$1,171</td><td class="num">$1,163</td><td class="num">$1,174</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>RPS</td><td class="num">$3.54</td><td class="num">$3.37</td><td class="num">$2.30</td><td class="num">$3.00</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Revenue (AUD)</td><td class="num">$46,320</td><td class="num">$45,676</td><td class="num">$39,540</td><td class="num" style="font-weight:700">$131,536</td><td class="num">$151,154</td><td class="num"><span class="tag tag-red">-13%</span></td></tr>
+          <tr><td>Meta Spend</td><td class="num">$14,011</td><td class="num">$14,076</td><td class="num">$13,817</td><td class="num">$41,904</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Google Spend (est)</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Total Ad Spend</td><td class="num">$14,011</td><td class="num">$14,076</td><td class="num">$13,817</td><td class="num">$41,904</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Meta ROAS</td><td class="num">9.2x</td><td class="num">7.1x</td><td class="num">6.1x</td><td class="num">7.5x</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr style="background:rgba(236,72,153,.1)"><td><strong>MER (Meta only *)</strong></td><td class="num">3.31x</td><td class="num">3.24x</td><td class="num">2.86x</td><td class="num" style="font-weight:700">3.14x</td><td class="num">12x</td><td class="num"><span class="tag tag-red">-74%</span></td></tr>
         </tbody>
       </table>
-      <p class="note">Note: ROAS (7.5x) is much higher than MER (3.14x) — means Meta is claiming credit for conversions that aren't matching actual Shopify line item revenue. Could be attribution window differences or counting other products in "Snuggle" campaigns. Worth digging in.</p>
+      <p class="note">* Snuggle AU has no known Google spend attributed. ⚠️ <strong>ATC rate collapsed 2.35%→0.89%</strong> and CVR dropped 0.23%→0.09% in March even as sessions grew. Strong signal that creative is fatiguing or traffic quality dropped.</p>
     </div>
   </div>
 
   <!-- CA -->
   <div id="country-ca" style="display:none">
     <div class="chart-box" style="border-left:4px solid var(--ca)">
-      <h3>🇨🇦 Canada — lifely.com.au orders shipped to CA</h3>
-      <div class="kpi-grid">
-        <div class="kpi"><div class="lbl">Q1 Revenue</div><div class="val">$28K AUD</div><div class="sub">Gross</div></div>
-        <div class="kpi"><div class="lbl">Orders</div><div class="val">25</div><div class="sub">2→5→18 🚀</div></div>
-        <div class="kpi"><div class="lbl">March Alone</div><div class="val">$20K</div><div class="sub">72% of Q1</div></div>
-        <div class="kpi"><div class="lbl">vs Target</div><div class="val" style="color:var(--danger)">-78%</div><div class="sub">$127K tgt</div></div>
-      </div>
+      <h3>🇨🇦 Canada — lifely.com.au orders shipped to CA (AUD)</h3>
+      <p class="note" style="margin-top:0">GA4 sessions from lifely.com.au filtered to Canada visitors landing on Cushie/Snuggle pages.</p>
     </div>
 
     <div class="product-box cushie">
-      <h3 style="color:var(--cushie);margin-bottom:12px">🛋️ Cushie Modular — CA</h3>
+      <h3 style="color:var(--cushie);margin-bottom:12px">🛋️ Cushie — CA</h3>
       <table>
-        <thead><tr><th>Month</th><th class="num">Orders</th><th class="num">Gross Rev (AUD)</th></tr></thead>
+        <thead><tr><th>Metric</th><th class="num">Jan</th><th class="num">Feb</th><th class="num">Mar</th><th class="num">Q1 Total</th><th class="num">Q1 Target</th><th class="num">Δ vs Target</th></tr></thead>
         <tbody>
-          <tr><td>Jan</td><td class="num">0</td><td class="num">$0</td></tr>
-          <tr><td>Feb</td><td class="num">0</td><td class="num">$0</td></tr>
-          <tr><td>Mar</td><td class="num">7</td><td class="num">$6,822</td></tr>
-          <tr style="font-weight:700"><td>Q1</td><td class="num">7</td><td class="num">$6,822</td></tr>
+          <tr><td>Sessions</td><td class="num">199</td><td class="num">189</td><td class="num">317</td><td class="num" style="font-weight:700">705</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>ATC Rate</td><td class="num">4.52%</td><td class="num">2.12%</td><td class="num">3.79%</td><td class="num">3.54%</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>CVR</td><td class="num">0.00%</td><td class="num">0.00%</td><td class="num">0.32%</td><td class="num">0.14%</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Orders</td><td class="num">0</td><td class="num">0</td><td class="num">7</td><td class="num" style="font-weight:700">7</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>AOV</td><td class="num">—</td><td class="num">—</td><td class="num">$975</td><td class="num">$975</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>RPS</td><td class="num">$0.00</td><td class="num">$0.00</td><td class="num">$3.62</td><td class="num">$1.63</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Revenue (AUD)</td><td class="num">$0</td><td class="num">$0</td><td class="num">$6,822</td><td class="num" style="font-weight:700">$6,822</td><td class="num">$115,940</td><td class="num"><span class="tag tag-red">-94%</span></td></tr>
+          <tr><td>Meta Spend</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Google Spend (est)</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Total Ad Spend</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr style="background:rgba(139,92,246,.1)"><td><strong>MER</strong></td><td class="num">—</td><td class="num">—</td><td class="num">∞</td><td class="num" style="font-weight:700">∞ (organic)</td><td class="num">12x</td><td class="num">—</td></tr>
         </tbody>
       </table>
+      <p class="note">Cushie CA is essentially organic — no direct ad spend. 7 March orders came from ~317 sessions. Worth testing targeted CA Cushie ads.</p>
     </div>
 
     <div class="product-box snuggle">
       <h3 style="color:var(--snuggle);margin-bottom:12px">🛏️ Snuggle — CA ⭐ BREAKOUT</h3>
       <table>
-        <thead><tr><th>Month</th><th class="num">Orders</th><th class="num">Gross Rev (AUD)</th><th class="num">Meta Spend</th><th class="num">ROAS</th><th class="num">vs Target</th></tr></thead>
+        <thead><tr><th>Metric</th><th class="num">Jan</th><th class="num">Feb</th><th class="num">Mar</th><th class="num">Q1 Total</th><th class="num">Q1 Target</th><th class="num">Δ vs Target</th></tr></thead>
         <tbody>
-          <tr><td>Jan</td><td class="num">2</td><td class="num">$1,993</td><td class="num">—</td><td class="num">—</td><td class="num"><span class="tag tag-red">-88%</span></td></tr>
-          <tr><td>Feb</td><td class="num">5</td><td class="num">$5,663</td><td class="num">$888</td><td class="num">—</td><td class="num"><span class="tag tag-red">-87%</span></td></tr>
-          <tr><td>Mar</td><td class="num">11</td><td class="num">$13,180</td><td class="num">$2,610</td><td class="num">~5x</td><td class="num"><span class="tag tag-red">-81%</span></td></tr>
-          <tr style="font-weight:700"><td>Q1</td><td class="num">18</td><td class="num">$20,836</td><td class="num">$3,498</td><td class="num">~6x</td><td class="num"><span class="tag tag-red">-84%</span></td></tr>
+          <tr><td>Sessions</td><td class="num">99</td><td class="num">1,882</td><td class="num">4,813</td><td class="num" style="font-weight:700">6,794 🚀</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>ATC Rate</td><td class="num">13.13%</td><td class="num">1.97%</td><td class="num">1.64%</td><td class="num">1.90%</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>CVR</td><td class="num">0.00%</td><td class="num">0.11%</td><td class="num">0.12%</td><td class="num">0.12%</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Orders</td><td class="num">2</td><td class="num">5</td><td class="num">11</td><td class="num" style="font-weight:700">18</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>AOV</td><td class="num">$996</td><td class="num">$1,133</td><td class="num">$1,198</td><td class="num">$1,157</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>RPS</td><td class="num">$20.13</td><td class="num">$1.07</td><td class="num">$1.48</td><td class="num">$1.67</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Revenue (AUD)</td><td class="num">$1,993</td><td class="num">$5,663</td><td class="num">$13,180</td><td class="num" style="font-weight:700">$20,836</td><td class="num">$127,500</td><td class="num"><span class="tag tag-red">-84%</span></td></tr>
+          <tr><td>Meta Spend</td><td class="num">$0</td><td class="num">$888</td><td class="num">$2,610</td><td class="num">$3,498</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Google Spend (est)</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Total Ad Spend</td><td class="num">$0</td><td class="num">$888</td><td class="num">$2,610</td><td class="num">$3,498</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Meta ROAS</td><td class="num">—</td><td class="num">~6x</td><td class="num">~5x</td><td class="num">~6x</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr style="background:rgba(236,72,153,.1)"><td><strong>MER</strong></td><td class="num">∞</td><td class="num">6.38x</td><td class="num">5.05x</td><td class="num" style="font-weight:700;color:var(--success)">5.96x</td><td class="num">12x</td><td class="num"><span class="tag tag-red">-50%</span></td></tr>
         </tbody>
       </table>
-      <p class="note">Sheet Q2 target is $238K AUD on $20K spend at 12x ROAS. That's 10x what's happening now. But the trajectory (2→5→11) is real. Needs serious spend increase + probably infrastructure (faster shipping, CAD pricing).</p>
+      <p class="note">Sessions exploded 99→1,882→4,813 — 48x growth. 6x MER on $3.5K spend is the best efficiency in the account. Target $127K is 6x what we did, but with right investment probably reachable.</p>
     </div>
   </div>
 
   <!-- NZ -->
   <div id="country-nz" style="display:none">
     <div class="chart-box" style="border-left:4px solid var(--nz)">
-      <h3>🇳🇿 New Zealand — lifely.com.au orders shipped to NZ</h3>
-      <div class="kpi-grid">
-        <div class="kpi"><div class="lbl">Q1 Revenue</div><div class="val">$8K AUD</div><div class="sub">Gross</div></div>
-        <div class="kpi"><div class="lbl">Orders</div><div class="val">6</div><div class="sub">2→3→1 ↘</div></div>
-        <div class="kpi"><div class="lbl">AOV</div><div class="val">$1,324</div><div class="sub">Highest</div></div>
-        <div class="kpi"><div class="lbl">Product Mix</div><div class="val">100%</div><div class="sub">Cushie only</div></div>
-      </div>
+      <h3>🇳🇿 New Zealand — lifely.com.au orders shipped to NZ (AUD)</h3>
+      <p class="note" style="margin-top:0">Small market, not in financial model targets.</p>
     </div>
+
     <div class="product-box cushie">
-      <h3 style="color:var(--cushie)">🛋️ Cushie Modular — NZ</h3>
+      <h3 style="color:var(--cushie);margin-bottom:12px">🛋️ Cushie — NZ</h3>
+      <table>
+        <thead><tr><th>Metric</th><th class="num">Jan</th><th class="num">Feb</th><th class="num">Mar</th><th class="num">Q1 Total</th></tr></thead>
+        <tbody>
+          <tr><td>Sessions</td><td class="num">1,132</td><td class="num">1,113</td><td class="num">1,220</td><td class="num" style="font-weight:700">3,465</td></tr>
+          <tr><td>ATC Rate</td><td class="num">1.86%</td><td class="num">1.17%</td><td class="num">2.05%</td><td class="num">1.70%</td></tr>
+          <tr><td>CVR</td><td class="num">0.09%</td><td class="num">0.00%</td><td class="num">0.08%</td><td class="num">0.06%</td></tr>
+          <tr><td>Orders</td><td class="num">2</td><td class="num">3</td><td class="num">1</td><td class="num" style="font-weight:700">6</td></tr>
+          <tr><td>AOV</td><td class="num">$1,493</td><td class="num">$1,036</td><td class="num">$1,851</td><td class="num">$1,324</td></tr>
+          <tr><td>RPS</td><td class="num">$2.64</td><td class="num">$2.79</td><td class="num">$1.53</td><td class="num">$2.29</td></tr>
+          <tr><td>Revenue (AUD)</td><td class="num">$2,985</td><td class="num">$3,107</td><td class="num">$1,851</td><td class="num" style="font-weight:700">$7,943</td></tr>
+          <tr><td>Meta Spend</td><td class="num">$699</td><td class="num">$833</td><td class="num">$1,012</td><td class="num">$2,544</td></tr>
+          <tr><td>Google Spend</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td></tr>
+          <tr><td>Total Ad Spend</td><td class="num">$699</td><td class="num">$833</td><td class="num">$1,012</td><td class="num">$2,544</td></tr>
+          <tr><td>Meta ROAS</td><td class="num">1.4x</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr style="background:rgba(139,92,246,.1)"><td><strong>MER</strong></td><td class="num">4.27x</td><td class="num">3.73x</td><td class="num">1.83x</td><td class="num" style="font-weight:700">3.12x</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="product-box snuggle">
+      <h3 style="color:var(--snuggle);margin-bottom:12px">🛏️ Snuggle — NZ</h3>
       <p style="font-size:14px;padding:10px;line-height:1.8">
-        6 Cushie orders, $7,943 AUD. No Snuggle orders. Declining trend (2→3→1). Not in the financial model — treated as bonus. Worth testing Snuggle NZ given CA momentum, or explicitly deprioritize.
+        <strong>0 orders in Q1.</strong> GA4 shows minimal sessions (13 in Jan, none after). Snuggle isn't being marketed to NZ. Given CA breakout, worth a targeted test in Q2.
       </p>
     </div>
   </div>
