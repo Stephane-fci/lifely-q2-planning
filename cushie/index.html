@@ -42,22 +42,27 @@ tr:hover{background:var(--card2)}
 .tag-yellow{background:#422006;color:var(--warning)}
 .tag-purple{background:#2e1065;color:var(--primary)}
 .tag-pink{background:#500724;color:var(--snuggle)}
-.section-title{font-size:18px;font-weight:700;margin:28px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.btn{padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:var(--card2);color:var(--text);cursor:pointer;font-size:13px;font-weight:500}
-.btn:hover{background:var(--border)}
-.btn-primary{background:var(--primary);border-color:var(--primary);color:#fff}
-.product-tabs{display:flex;gap:8px;margin-bottom:20px}
-.product-tab{padding:10px 18px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;border:2px solid var(--border);background:var(--card);transition:all .2s}
-.product-tab:hover{border-color:var(--text2)}
-.product-tab.active.cushie{border-color:var(--cushie);background:rgba(139,92,246,.15)}
-.product-tab.active.snuggle{border-color:var(--snuggle);background:rgba(236,72,153,.15)}
+.section-title{font-size:20px;font-weight:700;margin:28px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.country-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.country-tab{padding:10px 18px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;border:2px solid var(--border);background:var(--card);transition:all .2s}
+.country-tab:hover{border-color:var(--text2)}
+.country-tab.active{color:#fff}
+.country-tab.us.active{border-color:var(--us);background:rgba(99,102,241,.2)}
+.country-tab.au.active{border-color:var(--au);background:rgba(245,158,11,.2)}
+.country-tab.ca.active{border-color:var(--ca);background:rgba(239,68,68,.2)}
+.country-tab.nz.active{border-color:var(--nz);background:rgba(34,197,94,.2)}
+.product-box{border-radius:var(--radius);padding:20px;margin-bottom:16px;border:1px solid var(--border)}
+.product-box.cushie{border-left:4px solid var(--cushie)}
+.product-box.snuggle{border-left:4px solid var(--snuggle)}
+.warn-box{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:12px 16px;font-size:13px;margin-bottom:16px}
+.edit-input{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text);font-size:13px;width:100px;text-align:right}
 .note{font-size:12px;color:var(--text2);margin-top:8px;font-style:italic}
-.warn-box{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--text);margin-bottom:16px}
-.edit-input{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text);font-size:13px;width:110px;text-align:right}
-.okr-obj{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px}
-.okr-obj h3{font-size:16px;margin-bottom:12px}
-.kr-item{background:var(--card2);border-radius:8px;padding:14px;margin-bottom:10px;display:grid;grid-template-columns:1fr 110px 130px 130px 120px;gap:10px;align-items:center}
-.kr-item input,.kr-item select{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:5px 8px;color:var(--text);font-size:12px;width:100%}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+@media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--card2);border-radius:8px;padding:14px;text-align:center}
+.kpi .lbl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.kpi .val{font-size:18px;font-weight:700}
+.kpi .sub{font-size:11px;color:var(--text2);margin-top:2px}
 </style>
 </head>
 <body>
@@ -65,371 +70,472 @@ tr:hover{background:var(--card2)}
   <h1>🛋️ <span>Cushie</span> — Q2 Planning</h1>
   <div style="display:flex;gap:12px;align-items:center">
     <span class="badge">FY26</span>
-    <span style="color:var(--text2);font-size:12px">Q1 actuals · 🇺🇸 USD via cushiehome.com · 🇦🇺🇨🇦🇳🇿 AUD via lifely.com.au</span>
+    <span style="color:var(--text2);font-size:12px">Q1 actuals vs sheet targets · By country → by product</span>
   </div>
 </div>
 
 <div class="tabs" id="tabBar">
   <div class="tab active" data-tab="summary">📝 Summary</div>
-  <div class="tab" data-tab="overview">📊 Overview</div>
-  <div class="tab" data-tab="products">🛏️ By Product</div>
-  <div class="tab" data-tab="regions">🌍 By Region</div>
-  <div class="tab" data-tab="ads">📣 Ads & MER</div>
-  <div class="tab" data-tab="targets">🎯 Q2 Targets</div>
+  <div class="tab" data-tab="overview">🌍 Q1 by Country</div>
+  <div class="tab" data-tab="country">🔍 Country Deep Dive</div>
+  <div class="tab" data-tab="products">🛏️ Products Cross-Country</div>
+  <div class="tab" data-tab="targets">🎯 Q1 vs Target + Q2</div>
+  <div class="tab" data-tab="mer">📣 MER & Ads</div>
   <div class="tab" data-tab="okr">📋 OKRs</div>
   <div class="tab" data-tab="retro">💬 Workshop</div>
 </div>
 
 <div class="content">
 
-<!-- ========== TAB: SUMMARY ========== -->
+<!-- ========== SUMMARY ========== -->
 <div class="tab-content active" id="summary">
   <div style="max-width:900px;margin:0 auto">
     <div style="text-align:center;padding:40px 0 30px">
       <div style="font-size:48px;margin-bottom:8px">🛋️</div>
       <h1 style="font-size:32px;font-weight:800;margin-bottom:8px">Cushie — Q2 Planning</h1>
-      <p style="color:var(--text2);font-size:16px">Two stores. Two products. Four regions. Here's the picture.</p>
+      <p style="color:var(--text2);font-size:16px">Q1 actuals vs financial model targets · by country → by product</p>
+    </div>
+
+    <div class="warn-box">
+      ⚠️ <strong>Currency note:</strong> cushiehome.com actuals in USD; lifely.com.au actuals in AUD. Financial model targets in the sheet are <strong>all AUD</strong>. This dashboard shows both, and converts where needed (1 AUD ≈ 0.692 USD).
+      <br><br>
+      ⚠️ <strong>Google Ads spend (~$39K AUD/mo)</strong> is not in my Google Ads API access yet. Meta-only ROAS shown; use the Q2 Targets tab to add Google spend manually for MER.
     </div>
 
     <div class="chart-box" style="border-left:4px solid var(--primary)">
-      <h3 style="font-size:18px;margin-bottom:16px">📖 The Story</h3>
+      <h3 style="font-size:18px;margin-bottom:16px">📖 The Q1 Story</h3>
       <p style="font-size:15px;line-height:1.8">
-        Cushie is two products: <strong style="color:var(--cushie)">Cushie Modular</strong> (the original sleeper sofa) and <strong style="color:var(--snuggle)">Snuggle</strong> (the newer sofa bed). They sell through two stores: cushiehome.com (US, USD) and lifely.com.au (AU/CA/NZ, AUD).
+        Cushie did <strong>$1.04M USD equivalent</strong> in Q1 across 4 countries and 2 products:
         <br><br>
-        Q1 reality: <strong style="color:var(--cushie)">Cushie Modular is the cash machine</strong> — 819 orders, 6.5x MER in both markets. <strong style="color:var(--snuggle)">Snuggle is growing fast but burning efficiency</strong> — 258 orders, only 3.8x MER. Same brand, very different unit economics.
+        • <strong>🇺🇸 US (cushiehome.com):</strong> $586K USD — <strong>beat forecast by $10K</strong> overall, Cushie V2 missed target (-12%), Snuggle smashed it (+124%)<br>
+        • <strong>🇦🇺 AU (lifely.com.au):</strong> $445K AUD — <strong>Cushie V2 MISSED target by -24%</strong>, Snuggle a bright spot (not in Q1 target)<br>
+        • <strong>🇨🇦 CA (lifely.com.au):</strong> $28K AUD — Cushie barely started, Snuggle breaking out (2→5→18 orders)<br>
+        • <strong>🇳🇿 NZ (lifely.com.au):</strong> $8K AUD — declining, not a priority
         <br><br>
-        The pattern is consistent across markets: Cushie Modular outperforms Snuggle on MER by ~70% in both US and AU. But Snuggle has higher AOV ($1,511 vs $1,086) and is the only product breaking through in Canada.
+        The model target for Q1 Cushie V2 AU alone was <strong>$430K AUD</strong>. We did <strong>$282K</strong>. That's a <strong>-34% miss</strong>. Meanwhile Snuggle, which wasn't even in the original AU model, did <strong>$163K AUD</strong> unplanned.
       </p>
     </div>
 
     <div class="grid-2">
-      <div class="chart-box" style="border-left:4px solid var(--cushie)">
-        <h3 style="color:var(--cushie)">🛋️ Cushie Modular — The Cash Machine</h3>
-        <div style="font-size:14px;line-height:2">
-          <div>📦 <strong>819 orders</strong> across all regions in Q1</div>
-          <div>💰 <strong>$450K USD net</strong> in US + <strong>$282K AUD</strong> in AU/CA/NZ</div>
-          <div>📣 <strong>$111K total Meta spend</strong> (US $69K + AU $42K)</div>
-          <div>🎯 <strong>US MER: 6.52x</strong> · <strong>AU MER: 6.65x</strong></div>
-          <div>⭐ <strong>Mar US MER: 8.52x</strong> — accelerating</div>
-          <div>📈 Healthy and scaling efficiently</div>
-        </div>
+      <div class="chart-box" style="border-left:4px solid var(--success)">
+        <h3>🏆 Q1 Wins</h3>
+        <ul style="font-size:14px;line-height:2;padding-left:18px">
+          <li><strong>Snuggle US: +124% vs target</strong> ($195K tgt → $436K actual AUD)</li>
+          <li><strong>US Cushie Mar MER: 8.52x</strong> — accelerating hard</li>
+          <li><strong>Canada Snuggle breakout</strong> — 2→5→11 Snuggle orders</li>
+          <li><strong>AU Snuggle at 7.5x ROAS</strong> — best campaign in the account</li>
+          <li><strong>1,077 total orders across 4 countries</strong></li>
+          <li><strong>AU Cushie MER Mar: 6.02x</strong> — proven engine</li>
+        </ul>
       </div>
-
-      <div class="chart-box" style="border-left:4px solid var(--snuggle)">
-        <h3 style="color:var(--snuggle)">🛏️ Snuggle — Fast Growth, Tight Margins</h3>
-        <div style="font-size:14px;line-height:2">
-          <div>📦 <strong>258 orders</strong> in Q1, growing every month</div>
-          <div>💰 <strong>$136K USD net</strong> + <strong>$163K AUD</strong></div>
-          <div>📣 <strong>$78K total Meta spend</strong> (US $36K + AU $42K)</div>
-          <div>🎯 <strong>US MER: 3.75x</strong> · <strong>AU MER: 3.88x</strong></div>
-          <div>⚠️ <strong>Mar US MER: 2.48x</strong> — declining as scale grows</div>
-          <div>🚀 Highest AOV ($1,511) but needs efficiency fix</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="chart-box" style="border-left:4px solid var(--success)">
-      <h3>🏆 Q1 Wins</h3>
-      <div style="font-size:14px;line-height:2">
-        <div>📈 <strong>1,077 total orders across both products</strong> — 4 countries, 2 stores</div>
-        <div>💰 <strong>Cushie Modular MER ~6.5x in both markets</strong> — consistent, scalable</div>
-        <div>🇨🇦 <strong>Canada Snuggle exploding</strong> — 2→5→11 Snuggle orders Jan→Feb→Mar</div>
-        <div>🆕 <strong>Snuggle US scaling fast</strong> — 31→38→51 orders</div>
-        <div>⭐ <strong>US Branded Post Cushie at 7.4x ROAS</strong> — under-leveraged at $9.5K spend</div>
-        <div>🔥 <strong>AU MOFU campaigns at 19-25x ROAS</strong> — gold standard retargeting</div>
+      <div class="chart-box" style="border-left:4px solid var(--danger)">
+        <h3>⚠️ Q1 Concerns</h3>
+        <ul style="font-size:14px;line-height:2;padding-left:18px">
+          <li><strong>AU Cushie V2: -34% vs target</strong> ($430K tgt → $282K actual)</li>
+          <li><strong>US Cushie V2: -11% vs target</strong> ($818K tgt → $736K actual AUD)</li>
+          <li><strong>US Snuggle MER collapsed</strong> 11.6x → 2.48x as spend scaled 8x</li>
+          <li><strong>March US Snuggle CPA: $376</strong> (from $154 Jan)</li>
+          <li><strong>23% discount rate on US store</strong></li>
+          <li><strong>Google Ads data not visible</strong> — ~$39K AUD/mo invisible</li>
+        </ul>
       </div>
     </div>
 
-    <div class="chart-box" style="border-left:4px solid var(--danger)">
-      <h3>⚠️ Q1 Concerns</h3>
-      <div style="font-size:14px;line-height:2">
-        <div>📉 <strong>Snuggle US MER declining</strong> — 11.6x → 4.5x → 2.5x Jan→Feb→Mar as spend scales 8x</div>
-        <div>💸 <strong>March US Snuggle CPA: $376</strong> — vs $154 in Jan</div>
-        <div>🏷️ <strong>23% discount rate on US store</strong> — $177K in Q1 discounts. Margin pressure</div>
-        <div>🔄 <strong>48 refund events on US</strong> — $28K refunded (4.7% rate). Off-gassing #1 complaint</div>
-        <div>📊 <strong>Google Ads spend not visible to me</strong> — Chris confirmed ~$39K AUD/mo running. MER below excludes it</div>
-        <div>🇳🇿 <strong>NZ declining</strong> — 2→3→1 orders</div>
-      </div>
+    <div class="chart-box" style="border-left:4px solid var(--warning)">
+      <h3>🎯 Q2 Target (from financial model)</h3>
+      <table style="font-size:13px">
+        <thead><tr><th>Product</th><th>Country</th><th class="num">Q2 Revenue Target (AUD)</th><th class="num">Q2 Ad Budget (AUD)</th><th class="num">Target ROAS</th></tr></thead>
+        <tbody>
+          <tr><td>🛋️ Cushie V2</td><td>🇺🇸 US</td><td class="num">$1,295,800</td><td class="num">$107,944</td><td class="num">12.0x</td></tr>
+          <tr><td>🛋️ Cushie V2</td><td>🇦🇺 AU</td><td class="num">$818,269</td><td class="num">$67,840</td><td class="num">12.1x</td></tr>
+          <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇺🇸 US</td><td class="num">$357,000</td><td class="num">$29,652</td><td class="num">12.0x</td></tr>
+          <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇦🇺 AU</td><td class="num">$244,173</td><td class="num">$20,280</td><td class="num">12.0x</td></tr>
+          <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇨🇦 CA</td><td class="num">$238,000</td><td class="num">$19,803</td><td class="num">12.0x</td></tr>
+          <tr style="font-weight:700;border-top:2px solid var(--primary)"><td>TOTAL</td><td>—</td><td class="num">$2,953,242 AUD</td><td class="num">$245,519 AUD</td><td class="num">12.0x</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Sheet targets assume 12x ROAS across all campaigns — aggressive given Q1 actuals (3-7x for most). Q2 needs either dramatic efficiency gain or a big volume bet on reaching these targets.</p>
     </div>
 
     <div class="chart-box" style="border-left:4px solid var(--primary);background:linear-gradient(135deg,var(--card) 0%,rgba(139,92,246,.05) 100%)">
       <h3>❓ The Q2 Question</h3>
       <p style="font-size:15px;line-height:1.8">
-        <strong>Cushie Modular</strong> is the proven engine. The question is: how much can we scale spend before efficiency drops? 6.5x MER gives a lot of headroom.
+        Sheet target: <strong>$2.95M AUD Q2</strong>. Q1 did ~<strong>$1.5M AUD</strong>. That's <strong>~100% growth required</strong>, with ROAS targets double what we're achieving.
         <br><br>
-        <strong>Snuggle</strong> is the growth bet. The question is: can we fix the post-click experience and creative fatigue before the math stops working? March US Snuggle MER of 2.48x is below most reasonable margin profiles.
-        <br><br>
-        <strong style="color:var(--warning)">Today: Where do we put the next $50K — into proven Cushie scale, or into fixing Snuggle so it can scale?</strong>
+        Real questions:
+        <br>
+        • Is 12x ROAS realistic, or does the model need updating?<br>
+        • Why is AU Cushie V2 missing by 34%? Creative? Stock? Market?<br>
+        • Can we fix US Snuggle unit economics before pouring more spend?<br>
+        • Should Canada get the aggressive Snuggle budget the model suggests?<br>
       </p>
     </div>
   </div>
 </div>
 
-<!-- ========== TAB: OVERVIEW ========== -->
+<!-- ========== OVERVIEW: Q1 BY COUNTRY ========== -->
 <div class="tab-content" id="overview">
-  <div class="warn-box">⚠️ <strong>MER excludes Google Ads spend.</strong> Chris confirmed ~$39K AUD/month running through a Google Ads account I don't have API access to. Real MER will be lower once that's added. Need account ID from Allen.</div>
+  <div class="section-title">🌍 Q1 Performance by Country</div>
 
   <div class="metrics-row">
-    <div class="mc"><div class="l">Total Orders</div><div class="v">1,077</div><div class="s">Cushie 819 + Snuggle 258</div></div>
-    <div class="mc"><div class="l">🇺🇸 US Net Rev</div><div class="v">$586K</div><div class="s">USD · Cushie $450K + Snuggle $136K</div></div>
-    <div class="mc"><div class="l">🇦🇺 AU Net Rev</div><div class="v">$445K</div><div class="s">AUD · Cushie $282K + Snuggle $163K</div></div>
-    <div class="mc"><div class="l">Meta Spend</div><div class="v">$190K</div><div class="s">$105K USD + $84K AUD</div></div>
-    <div class="mc"><div class="l">Cushie MER (blended)</div><div class="v up">~6.5x</div><div class="s">Both regions</div></div>
-    <div class="mc"><div class="l">Snuggle MER (blended)</div><div class="v warn">~3.8x</div><div class="s">Both regions</div></div>
-    <div class="mc"><div class="l">Google Ads</div><div class="v warn">~$39K</div><div class="s">AUD/mo · No API access</div></div>
-    <div class="mc"><div class="l">Refund Rate (US)</div><div class="v">4.7%</div><div class="s">$28K Q1</div></div>
+    <div class="mc"><div class="l">🇺🇸 US Net Revenue</div><div class="v">$586K</div><div class="s">USD · ~$847K AUD</div></div>
+    <div class="mc"><div class="l">🇦🇺 AU Gross Revenue</div><div class="v">$445K</div><div class="s">AUD</div></div>
+    <div class="mc"><div class="l">🇨🇦 CA Gross Revenue</div><div class="v">$28K</div><div class="s">AUD · 9x growth Jan→Mar</div></div>
+    <div class="mc"><div class="l">🇳🇿 NZ Gross Revenue</div><div class="v">$8K</div><div class="s">AUD · declining</div></div>
+    <div class="mc"><div class="l">Total (AUD equiv)</div><div class="v">~$1.33M</div><div class="s">All regions</div></div>
+    <div class="mc"><div class="l">Total Orders</div><div class="v">1,077</div><div class="s">US 651 + AU/CA/NZ 426</div></div>
   </div>
 
   <div class="chart-box">
-    <h3>📈 Cushie vs Snuggle — Monthly Revenue (Both Stores Combined)</h3>
+    <h3>📊 Q1 Revenue by Country — Actual vs Target</h3>
     <table>
-      <thead><tr><th>Product</th><th>Store</th><th class="num">Jan</th><th class="num">Feb</th><th class="num">Mar</th><th class="num">Q1 Total</th><th>Trend</th></tr></thead>
+      <thead><tr><th>Country</th><th>Store</th><th class="num">Q1 Target (AUD)</th><th class="num">Q1 Actual (AUD)</th><th class="num">Δ</th><th class="num">Δ %</th></tr></thead>
       <tbody>
-        <tr><td>🛋️ Cushie</td><td>🇺🇸 cushiehome.com (USD)</td><td class="num">$128,773</td><td class="num">$147,672</td><td class="num">$173,637</td><td class="num" style="font-weight:700;color:var(--cushie)">$450,082</td><td><span class="tag tag-green">+35% ↗</span></td></tr>
-        <tr><td>🛋️ Cushie</td><td>🇦🇺 lifely.com.au (AUD)</td><td class="num">$108,252</td><td class="num">$79,416</td><td class="num">$94,591</td><td class="num" style="font-weight:700;color:var(--cushie)">$282,259</td><td><span class="tag tag-yellow">-13% ↘</span></td></tr>
-        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇺🇸 cushiehome.com (USD)</td><td class="num">$35,535</td><td class="num">$41,210</td><td class="num">$59,651</td><td class="num" style="font-weight:700;color:var(--snuggle)">$136,396</td><td><span class="tag tag-green">+68% 🚀</span></td></tr>
-        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇦🇺 lifely.com.au (AUD)</td><td class="num">$51,582</td><td class="num">$54,529</td><td class="num">$56,629</td><td class="num" style="font-weight:700;color:var(--snuggle)">$162,740</td><td><span class="tag tag-green">+10% ↗</span></td></tr>
+        <tr><td>🇺🇸 US</td><td>cushiehome.com</td><td class="num">$1,013,900</td><td class="num">$847,133 *</td><td class="num" style="color:var(--danger)">-$166,767</td><td class="num"><span class="tag tag-red">-16%</span></td></tr>
+        <tr><td>🇦🇺 AU</td><td>lifely.com.au</td><td class="num">$430,699</td><td class="num">$445,000</td><td class="num" style="color:var(--success)">+$14,301</td><td class="num"><span class="tag tag-green">+3%</span></td></tr>
+        <tr><td>🇨🇦 CA</td><td>lifely.com.au</td><td class="num">$127,500</td><td class="num">$28,000</td><td class="num" style="color:var(--danger)">-$99,500</td><td class="num"><span class="tag tag-red">-78%</span></td></tr>
+        <tr><td>🇳🇿 NZ</td><td>lifely.com.au</td><td class="num">—</td><td class="num">$8,000</td><td class="num">—</td><td class="num"><span class="tag tag-yellow">Not in target</span></td></tr>
+        <tr style="font-weight:700;border-top:2px solid var(--primary)"><td>TOTAL</td><td>—</td><td class="num">$1,572,099</td><td class="num">$1,328,133</td><td class="num" style="color:var(--danger)">-$243,966</td><td class="num"><span class="tag tag-red">-16%</span></td></tr>
       </tbody>
     </table>
-    <p class="note">🇺🇸 numbers are net of discounts (USD). 🇦🇺 numbers are gross line item revenue (AUD). Not directly comparable without FX.</p>
+    <p class="note">* US actual converted AUD at 1 USD = 1.4451 AUD. Sheet targets exclude Google Ads spend too — likely why ROAS expectations are 12x.</p>
   </div>
 
   <div class="grid-2">
-    <div class="chart-box"><h3>Cushie vs Snuggle — Order Volume</h3><div class="chart-wrap"><canvas id="ordersChart"></canvas></div></div>
-    <div class="chart-box"><h3>MER by Product & Market</h3><div class="chart-wrap"><canvas id="merChart"></canvas></div></div>
+    <div class="chart-box"><h3>Revenue Share by Country (Q1, AUD equiv)</h3><div class="chart-wrap"><canvas id="countryPieChart"></canvas></div></div>
+    <div class="chart-box"><h3>Monthly Revenue by Country</h3><div class="chart-wrap"><canvas id="monthlyCountryChart"></canvas></div></div>
   </div>
 
   <div class="chart-box">
-    <h3>🌍 Orders by Region — Q1 Combined</h3>
+    <h3>Cushie vs Snuggle Split by Country (Q1 orders)</h3>
     <table>
-      <thead><tr><th>Region</th><th class="num">🛋️ Cushie</th><th class="num">🛏️ Snuggle</th><th class="num">Total</th><th class="num">% of Orders</th><th>Lead Product</th></tr></thead>
+      <thead><tr><th>Country</th><th class="num">🛋️ Cushie Orders</th><th class="num">🛏️ Snuggle Orders</th><th class="num">Total</th><th>Product Mix</th></tr></thead>
       <tbody>
-        <tr><td>🇺🇸 US</td><td class="num">531</td><td class="num">120</td><td class="num" style="font-weight:700">651</td><td class="num">60%</td><td><span class="tag tag-purple">Cushie 82%</span></td></tr>
-        <tr><td>🇦🇺 AU</td><td class="num">271</td><td class="num">112</td><td class="num" style="font-weight:700">383</td><td class="num">36%</td><td><span class="tag tag-purple">Cushie 71%</span></td></tr>
-        <tr><td>🇨🇦 CA</td><td class="num">7</td><td class="num">18</td><td class="num" style="font-weight:700">25</td><td class="num">2%</td><td><span class="tag tag-pink">Snuggle 72%</span></td></tr>
-        <tr><td>🇳🇿 NZ</td><td class="num">6</td><td class="num">0</td><td class="num" style="font-weight:700">6</td><td class="num">1%</td><td><span class="tag tag-purple">Cushie 100%</span></td></tr>
-        <tr><td>🇺🇸 US (via lifely)</td><td class="num">3</td><td class="num">8</td><td class="num">11</td><td class="num">1%</td><td><span class="tag tag-pink">Snuggle 73%</span></td></tr>
-        <tr style="font-weight:700;border-top:2px solid var(--primary)"><td>TOTAL</td><td class="num">818</td><td class="num">258</td><td class="num">1,076</td><td class="num">100%</td><td>76% Cushie / 24% Snuggle</td></tr>
+        <tr><td>🇺🇸 US</td><td class="num">531</td><td class="num">120</td><td class="num">651</td><td><span class="tag tag-purple">82% Cushie</span> · <span class="tag tag-pink">18% Snuggle</span></td></tr>
+        <tr><td>🇦🇺 AU</td><td class="num">271</td><td class="num">112</td><td class="num">383</td><td><span class="tag tag-purple">71% Cushie</span> · <span class="tag tag-pink">29% Snuggle</span></td></tr>
+        <tr><td>🇨🇦 CA</td><td class="num">7</td><td class="num">18</td><td class="num">25</td><td><span class="tag tag-purple">28% Cushie</span> · <span class="tag tag-pink">72% Snuggle ⭐</span></td></tr>
+        <tr><td>🇳🇿 NZ</td><td class="num">6</td><td class="num">0</td><td class="num">6</td><td><span class="tag tag-purple">100% Cushie</span></td></tr>
       </tbody>
     </table>
-    <p class="note">Canada is the only region where Snuggle outsells Cushie. CA growth is essentially a Snuggle story.</p>
+    <p class="note">Canada is the only market where Snuggle outsells Cushie. It's the breakout product there.</p>
   </div>
 </div>
 
-<!-- ========== TAB: BY PRODUCT ========== -->
+<!-- ========== COUNTRY DEEP DIVE ========== -->
+<div class="tab-content" id="country">
+  <div class="section-title">🔍 Country Deep Dive</div>
+
+  <div class="country-tabs">
+    <div class="country-tab us active" data-country="us">🇺🇸 United States</div>
+    <div class="country-tab au" data-country="au">🇦🇺 Australia</div>
+    <div class="country-tab ca" data-country="ca">🇨🇦 Canada</div>
+    <div class="country-tab nz" data-country="nz">🇳🇿 New Zealand</div>
+  </div>
+
+  <!-- US -->
+  <div id="country-us">
+    <div class="chart-box" style="border-left:4px solid var(--us)">
+      <h3>🇺🇸 United States — cushiehome.com</h3>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="lbl">Q1 Revenue</div><div class="val">$586K USD</div><div class="sub">Net of discounts</div></div>
+        <div class="kpi"><div class="lbl">Orders</div><div class="val">651</div><div class="sub">182→211→247</div></div>
+        <div class="kpi"><div class="lbl">Blended MER</div><div class="val" style="color:var(--success)">5.58x</div><div class="sub">Meta only</div></div>
+        <div class="kpi"><div class="lbl">Discount Rate</div><div class="val" style="color:var(--warning)">23%</div><div class="sub">$177K Q1</div></div>
+      </div>
+    </div>
+
+    <div class="product-box cushie">
+      <h3 style="color:var(--cushie);margin-bottom:12px">🛋️ Cushie Modular — US</h3>
+      <table>
+        <thead><tr><th>Month</th><th class="num">Orders</th><th class="num">Units</th><th class="num">Net Rev</th><th class="num">Meta Spend</th><th class="num">Meta Rev</th><th class="num">ROAS</th><th class="num">MER</th><th class="num">vs Target</th></tr></thead>
+        <tbody>
+          <tr><td>Jan</td><td class="num">148</td><td class="num">164</td><td class="num">$128,773</td><td class="num">$28,482</td><td class="num">$85,365</td><td class="num">3.0x</td><td class="num"><span class="tag tag-green">4.52x</span></td><td class="num"><span class="tag tag-red">-12%</span></td></tr>
+          <tr><td>Feb</td><td class="num">176</td><td class="num">195</td><td class="num">$147,672</td><td class="num">$20,133</td><td class="num">$88,875</td><td class="num">4.4x</td><td class="num"><span class="tag tag-green">7.33x</span></td><td class="num"><span class="tag tag-red">-10%</span></td></tr>
+          <tr><td>Mar</td><td class="num">207</td><td class="num">233</td><td class="num">$173,637</td><td class="num">$20,374</td><td class="num">$61,518</td><td class="num">3.0x</td><td class="num"><span class="tag tag-green">8.52x ⭐</span></td><td class="num"><span class="tag tag-red">-6%</span></td></tr>
+          <tr style="font-weight:700"><td>Q1</td><td class="num">531</td><td class="num">592</td><td class="num">$450,082</td><td class="num">$68,989</td><td class="num">$235,757</td><td class="num">3.4x</td><td class="num">6.52x</td><td class="num"><span class="tag tag-red">-10%</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Target from sheet: Jan $245K AUD · Feb $273K AUD · Mar $300K AUD. Converting to USD: ~$170K/$189K/$208K. Actual below target by 6-12% every month, but MER is accelerating dramatically.</p>
+    </div>
+
+    <div class="product-box snuggle">
+      <h3 style="color:var(--snuggle);margin-bottom:12px">🛏️ Snuggle — US</h3>
+      <table>
+        <thead><tr><th>Month</th><th class="num">Orders</th><th class="num">Units</th><th class="num">Net Rev</th><th class="num">Meta Spend</th><th class="num">Meta Rev</th><th class="num">ROAS</th><th class="num">MER</th><th class="num">vs Target</th></tr></thead>
+        <tbody>
+          <tr><td>Jan</td><td class="num">31</td><td class="num">31</td><td class="num">$35,535</td><td class="num">$3,070</td><td class="num">$20,049</td><td class="num">6.5x</td><td class="num"><span class="tag tag-green">11.58x</span></td><td class="num"><span class="tag tag-green">+49%</span></td></tr>
+          <tr><td>Feb</td><td class="num">38</td><td class="num">38</td><td class="num">$41,210</td><td class="num">$9,246</td><td class="num">$26,051</td><td class="num">2.8x</td><td class="num"><span class="tag tag-green">4.46x</span></td><td class="num"><span class="tag tag-green">+128%</span></td></tr>
+          <tr><td>Mar</td><td class="num">51</td><td class="num">52</td><td class="num">$59,651</td><td class="num">$24,075</td><td class="num">$62,650</td><td class="num">2.6x</td><td class="num"><span class="tag tag-red">2.48x ⚠️</span></td><td class="num"><span class="tag tag-green">+47%</span></td></tr>
+          <tr style="font-weight:700"><td>Q1</td><td class="num">120</td><td class="num">121</td><td class="num">$136,396</td><td class="num">$36,391</td><td class="num">$108,751</td><td class="num">3.0x</td><td class="num">3.75x</td><td class="num"><span class="tag tag-green">+124%</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Smashing revenue targets (+124% vs sheet) but MER collapsed as spend scaled 8x. The volume is there but efficiency needs fixing urgently. March MER of 2.48x is below most margin profiles.</p>
+    </div>
+  </div>
+
+  <!-- AU -->
+  <div id="country-au" style="display:none">
+    <div class="chart-box" style="border-left:4px solid var(--au)">
+      <h3>🇦🇺 Australia — lifely.com.au (Cushie products only)</h3>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="lbl">Q1 Revenue</div><div class="val">$445K AUD</div><div class="sub">Gross line items</div></div>
+        <div class="kpi"><div class="lbl">Orders</div><div class="val">383</div><div class="sub">148→115→120</div></div>
+        <div class="kpi"><div class="lbl">Blended MER</div><div class="val" style="color:var(--success)">5.30x</div><div class="sub">Meta only</div></div>
+        <div class="kpi"><div class="lbl">vs Target</div><div class="val" style="color:var(--success)">+3%</div><div class="sub">$431K tgt</div></div>
+      </div>
+    </div>
+
+    <div class="product-box cushie">
+      <h3 style="color:var(--cushie);margin-bottom:12px">🛋️ Cushie Modular — AU</h3>
+      <table>
+        <thead><tr><th>Month</th><th class="num">Orders</th><th class="num">Units</th><th class="num">Gross Rev</th><th class="num">Meta Spend</th><th class="num">Meta Rev</th><th class="num">ROAS</th><th class="num">MER</th><th class="num">vs Target</th></tr></thead>
+        <tbody>
+          <tr><td>Jan</td><td class="num">109</td><td class="num">123</td><td class="num">$103,548</td><td class="num">$18,369</td><td class="num">$98,335</td><td class="num">5.4x</td><td class="num"><span class="tag tag-green">5.64x</span></td><td class="num"><span class="tag tag-red">-25%</span></td></tr>
+          <tr><td>Feb</td><td class="num">76</td><td class="num">83</td><td class="num">$73,532</td><td class="num">$10,267</td><td class="num">$78,953</td><td class="num">7.7x</td><td class="num"><span class="tag tag-green">7.16x</span></td><td class="num"><span class="tag tag-red">-40%</span></td></tr>
+          <tr><td>Mar</td><td class="num">86</td><td class="num">102</td><td class="num">$83,143</td><td class="num">$13,807</td><td class="num">$58,430</td><td class="num">4.2x</td><td class="num"><span class="tag tag-green">6.02x</span></td><td class="num"><span class="tag tag-red">-51%</span></td></tr>
+          <tr style="font-weight:700"><td>Q1</td><td class="num">271</td><td class="num">308</td><td class="num">$260,223</td><td class="num">$42,443</td><td class="num">$235,717</td><td class="num">5.6x</td><td class="num">6.13x</td><td class="num"><span class="tag tag-red">-39%</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Sheet Q1 target: $430K AUD. Actual: $260K. <strong>Missed by 39%.</strong> MER is strong (6.13x) but volume is way below model. Investigation: stock, creative fatigue, or over-ambitious target?</p>
+    </div>
+
+    <div class="product-box snuggle">
+      <h3 style="color:var(--snuggle);margin-bottom:12px">🛏️ Snuggle — AU</h3>
+      <table>
+        <thead><tr><th>Month</th><th class="num">Orders</th><th class="num">Units</th><th class="num">Gross Rev</th><th class="num">Meta Spend</th><th class="num">Meta Rev</th><th class="num">ROAS</th><th class="num">MER</th><th class="num">vs Target</th></tr></thead>
+        <tbody>
+          <tr><td>Jan</td><td class="num">39</td><td class="num">40</td><td class="num">$46,320</td><td class="num">$14,011</td><td class="num">$128,265</td><td class="num">9.2x</td><td class="num"><span class="tag tag-green">3.31x</span></td><td class="num"><span class="tag tag-green">+33%</span></td></tr>
+          <tr><td>Feb</td><td class="num">39</td><td class="num">41</td><td class="num">$45,676</td><td class="num">$14,076</td><td class="num">$100,599</td><td class="num">7.1x</td><td class="num"><span class="tag tag-green">3.24x</span></td><td class="num"><span class="tag tag-red">-21%</span></td></tr>
+          <tr><td>Mar</td><td class="num">34</td><td class="num">35</td><td class="num">$39,540</td><td class="num">$13,817</td><td class="num">$83,656</td><td class="num">6.1x</td><td class="num"><span class="tag tag-yellow">2.86x</span></td><td class="num"><span class="tag tag-red">-32%</span></td></tr>
+          <tr style="font-weight:700"><td>Q1</td><td class="num">112</td><td class="num">116</td><td class="num">$131,536</td><td class="num">$41,904</td><td class="num">$312,521</td><td class="num">7.5x</td><td class="num">3.14x</td><td class="num"><span class="tag tag-red">-13%</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Note: ROAS (7.5x) is much higher than MER (3.14x) — means Meta is claiming credit for conversions that aren't matching actual Shopify line item revenue. Could be attribution window differences or counting other products in "Snuggle" campaigns. Worth digging in.</p>
+    </div>
+  </div>
+
+  <!-- CA -->
+  <div id="country-ca" style="display:none">
+    <div class="chart-box" style="border-left:4px solid var(--ca)">
+      <h3>🇨🇦 Canada — lifely.com.au orders shipped to CA</h3>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="lbl">Q1 Revenue</div><div class="val">$28K AUD</div><div class="sub">Gross</div></div>
+        <div class="kpi"><div class="lbl">Orders</div><div class="val">25</div><div class="sub">2→5→18 🚀</div></div>
+        <div class="kpi"><div class="lbl">March Alone</div><div class="val">$20K</div><div class="sub">72% of Q1</div></div>
+        <div class="kpi"><div class="lbl">vs Target</div><div class="val" style="color:var(--danger)">-78%</div><div class="sub">$127K tgt</div></div>
+      </div>
+    </div>
+
+    <div class="product-box cushie">
+      <h3 style="color:var(--cushie);margin-bottom:12px">🛋️ Cushie Modular — CA</h3>
+      <table>
+        <thead><tr><th>Month</th><th class="num">Orders</th><th class="num">Gross Rev (AUD)</th></tr></thead>
+        <tbody>
+          <tr><td>Jan</td><td class="num">0</td><td class="num">$0</td></tr>
+          <tr><td>Feb</td><td class="num">0</td><td class="num">$0</td></tr>
+          <tr><td>Mar</td><td class="num">7</td><td class="num">$6,822</td></tr>
+          <tr style="font-weight:700"><td>Q1</td><td class="num">7</td><td class="num">$6,822</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="product-box snuggle">
+      <h3 style="color:var(--snuggle);margin-bottom:12px">🛏️ Snuggle — CA ⭐ BREAKOUT</h3>
+      <table>
+        <thead><tr><th>Month</th><th class="num">Orders</th><th class="num">Gross Rev (AUD)</th><th class="num">Meta Spend</th><th class="num">ROAS</th><th class="num">vs Target</th></tr></thead>
+        <tbody>
+          <tr><td>Jan</td><td class="num">2</td><td class="num">$1,993</td><td class="num">—</td><td class="num">—</td><td class="num"><span class="tag tag-red">-88%</span></td></tr>
+          <tr><td>Feb</td><td class="num">5</td><td class="num">$5,663</td><td class="num">$888</td><td class="num">—</td><td class="num"><span class="tag tag-red">-87%</span></td></tr>
+          <tr><td>Mar</td><td class="num">11</td><td class="num">$13,180</td><td class="num">$2,610</td><td class="num">~5x</td><td class="num"><span class="tag tag-red">-81%</span></td></tr>
+          <tr style="font-weight:700"><td>Q1</td><td class="num">18</td><td class="num">$20,836</td><td class="num">$3,498</td><td class="num">~6x</td><td class="num"><span class="tag tag-red">-84%</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Sheet Q2 target is $238K AUD on $20K spend at 12x ROAS. That's 10x what's happening now. But the trajectory (2→5→11) is real. Needs serious spend increase + probably infrastructure (faster shipping, CAD pricing).</p>
+    </div>
+  </div>
+
+  <!-- NZ -->
+  <div id="country-nz" style="display:none">
+    <div class="chart-box" style="border-left:4px solid var(--nz)">
+      <h3>🇳🇿 New Zealand — lifely.com.au orders shipped to NZ</h3>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="lbl">Q1 Revenue</div><div class="val">$8K AUD</div><div class="sub">Gross</div></div>
+        <div class="kpi"><div class="lbl">Orders</div><div class="val">6</div><div class="sub">2→3→1 ↘</div></div>
+        <div class="kpi"><div class="lbl">AOV</div><div class="val">$1,324</div><div class="sub">Highest</div></div>
+        <div class="kpi"><div class="lbl">Product Mix</div><div class="val">100%</div><div class="sub">Cushie only</div></div>
+      </div>
+    </div>
+    <div class="product-box cushie">
+      <h3 style="color:var(--cushie)">🛋️ Cushie Modular — NZ</h3>
+      <p style="font-size:14px;padding:10px;line-height:1.8">
+        6 Cushie orders, $7,943 AUD. No Snuggle orders. Declining trend (2→3→1). Not in the financial model — treated as bonus. Worth testing Snuggle NZ given CA momentum, or explicitly deprioritize.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PRODUCTS CROSS-COUNTRY ========== -->
 <div class="tab-content" id="products">
-  <div class="section-title">🛏️ Cushie vs Snuggle Deep Dive</div>
+  <div class="section-title">🛏️ Products Cross-Country</div>
 
-  <div class="product-tabs">
-    <div class="product-tab cushie active" data-product="cushie">🛋️ Cushie Modular</div>
-    <div class="product-tab snuggle" data-product="snuggle">🛏️ Snuggle</div>
-  </div>
-
-  <!-- Cushie Detail -->
-  <div id="cushie-content">
-    <div class="metrics-row">
-      <div class="mc"><div class="l">Q1 Orders</div><div class="v">819</div><div class="s">531 US + 288 AU/CA/NZ</div></div>
-      <div class="mc"><div class="l">US Net Revenue</div><div class="v">$450K</div><div class="s">USD · 76% of US store</div></div>
-      <div class="mc"><div class="l">AU Gross Revenue</div><div class="v">$282K</div><div class="s">AUD · 63% of AU Cushie</div></div>
-      <div class="mc"><div class="l">US MER</div><div class="v up">6.52x</div><div class="s up">Mar: 8.52x ↗</div></div>
-      <div class="mc"><div class="l">AU MER</div><div class="v up">6.65x</div><div class="s">Mar: 6.85x</div></div>
-      <div class="mc"><div class="l">US Avg AOV</div><div class="v">$1,086</div><div class="s">USD</div></div>
-      <div class="mc"><div class="l">AU Avg AOV</div><div class="v">$1,041</div><div class="s">AUD</div></div>
-      <div class="mc"><div class="l">Best Campaign</div><div class="v">7.4x</div><div class="s">US Branded Post CBO</div></div>
-    </div>
-
-    <div class="chart-box" style="border-left:4px solid var(--cushie)">
-      <h3>🛋️ Cushie Modular — Monthly Detail</h3>
-      <table>
-        <thead><tr><th>Month</th><th>Region</th><th class="num">Orders</th><th class="num">Units</th><th class="num">Net Rev</th><th class="num">Meta Spend</th><th class="num">Meta Purch</th><th class="num">ROAS</th><th class="num">MER</th></tr></thead>
-        <tbody>
-          <tr><td>Jan</td><td>🇺🇸 US</td><td class="num">148</td><td class="num">164</td><td class="num">$128,773</td><td class="num">$28,482</td><td class="num">89</td><td class="num">3.0x</td><td class="num"><span class="tag tag-green">4.52x</span></td></tr>
-          <tr><td>Feb</td><td>🇺🇸 US</td><td class="num">176</td><td class="num">195</td><td class="num">$147,672</td><td class="num">$20,133</td><td class="num">97</td><td class="num">4.4x</td><td class="num"><span class="tag tag-green">7.33x</span></td></tr>
-          <tr><td>Mar</td><td>🇺🇸 US</td><td class="num">207</td><td class="num">233</td><td class="num">$173,637</td><td class="num">$20,374</td><td class="num">68</td><td class="num">3.0x</td><td class="num"><span class="tag tag-green">8.52x ⭐</span></td></tr>
-          <tr style="background:#0d1224"><td>Jan</td><td>🇦🇺 AU</td><td class="num">109</td><td class="num">123</td><td class="num">$103,548</td><td class="num">$18,369</td><td class="num">131</td><td class="num">5.4x</td><td class="num"><span class="tag tag-green">5.64x</span></td></tr>
-          <tr style="background:#0d1224"><td>Feb</td><td>🇦🇺 AU</td><td class="num">76</td><td class="num">83</td><td class="num">$73,532</td><td class="num">$10,267</td><td class="num">88</td><td class="num">7.7x</td><td class="num"><span class="tag tag-green">7.16x</span></td></tr>
-          <tr style="background:#0d1224"><td>Mar</td><td>🇦🇺 AU</td><td class="num">86</td><td class="num">102</td><td class="num">$83,143</td><td class="num">$13,807</td><td class="num">66</td><td class="num">4.2x</td><td class="num"><span class="tag tag-green">6.02x</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="grid-2">
-      <div class="chart-box"><h3>Cushie US — Spend vs Revenue</h3><div class="chart-wrap"><canvas id="cushieUsChart"></canvas></div></div>
-      <div class="chart-box"><h3>Cushie AU — Spend vs Revenue</h3><div class="chart-wrap"><canvas id="cushieAuChart"></canvas></div></div>
-    </div>
-
-    <div class="chart-box" style="border-left:4px solid var(--success)">
-      <h3>💡 Cushie Modular Insights</h3>
-      <div style="font-size:14px;line-height:2;padding:10px">
-        <div>✅ <strong>US MER accelerating</strong> — 4.5x → 7.3x → 8.5x. Spend is flat at $20K/mo but revenue is growing organically too. Brand momentum + strong campaigns.</div>
-        <div>⚠️ <strong>AU orders dipped in Feb</strong> — 109 → 76 → 86. Recovered partially but didn't return to Jan levels. Possible end-of-summer seasonality.</div>
-        <div>🎯 <strong>Both markets MER ~6.5x</strong> — remarkable consistency. Says the product-market fit is real and travels.</div>
-        <div>⭐ <strong>US Branded Post at 7.4x ROAS</strong> — only $9.5K spend across Q1. Massive scaling opportunity.</div>
-        <div>📈 <strong>March Cushie US converted higher with fewer Meta-attributed purchases</strong> — 207 Shopify orders vs 68 Meta-attributed. Means more organic / direct / repeat conversions.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Snuggle Detail (hidden) -->
-  <div id="snuggle-content" style="display:none">
-    <div class="metrics-row">
-      <div class="mc"><div class="l">Q1 Orders</div><div class="v">258</div><div class="s">120 US + 138 AU/CA</div></div>
-      <div class="mc"><div class="l">US Net Revenue</div><div class="v">$136K</div><div class="s">USD · 23% of US store</div></div>
-      <div class="mc"><div class="l">AU Gross Revenue</div><div class="v">$163K</div><div class="s">AUD · 37% of AU Cushie</div></div>
-      <div class="mc"><div class="l">US MER</div><div class="v warn">3.75x</div><div class="s warn">Mar: 2.48x ↘</div></div>
-      <div class="mc"><div class="l">AU MER</div><div class="v">3.88x</div><div class="s">Mar: 4.10x</div></div>
-      <div class="mc"><div class="l">US Avg AOV</div><div class="v up">$1,511</div><div class="s">USD · Highest in lineup</div></div>
-      <div class="mc"><div class="l">CA Orders Mar</div><div class="v up">11</div><div class="s up">From 2 in Jan 🚀</div></div>
-      <div class="mc"><div class="l">Best Campaign</div><div class="v">7.5x</div><div class="s">AU Snuggle Creative Test</div></div>
-    </div>
-
-    <div class="chart-box" style="border-left:4px solid var(--snuggle)">
-      <h3>🛏️ Snuggle — Monthly Detail</h3>
-      <table>
-        <thead><tr><th>Month</th><th>Region</th><th class="num">Orders</th><th class="num">Units</th><th class="num">Net Rev</th><th class="num">Meta Spend</th><th class="num">Meta Purch</th><th class="num">ROAS</th><th class="num">MER</th></tr></thead>
-        <tbody>
-          <tr><td>Jan</td><td>🇺🇸 US</td><td class="num">31</td><td class="num">31</td><td class="num">$35,535</td><td class="num">$3,070</td><td class="num">20</td><td class="num">6.5x</td><td class="num"><span class="tag tag-green">11.58x</span></td></tr>
-          <tr><td>Feb</td><td>🇺🇸 US</td><td class="num">38</td><td class="num">38</td><td class="num">$41,210</td><td class="num">$9,246</td><td class="num">28</td><td class="num">2.8x</td><td class="num"><span class="tag tag-yellow">4.46x</span></td></tr>
-          <tr><td>Mar</td><td>🇺🇸 US</td><td class="num">51</td><td class="num">52</td><td class="num">$59,651</td><td class="num">$24,075</td><td class="num">64</td><td class="num">2.6x</td><td class="num"><span class="tag tag-red">2.48x ⚠️</span></td></tr>
-          <tr style="background:#0d1224"><td>Jan</td><td>🇦🇺 AU</td><td class="num">39</td><td class="num">40</td><td class="num">$46,320</td><td class="num">$14,011</td><td class="num">136</td><td class="num">9.2x</td><td class="num"><span class="tag tag-green">3.31x</span></td></tr>
-          <tr style="background:#0d1224"><td>Feb</td><td>🇦🇺 AU</td><td class="num">39</td><td class="num">41</td><td class="num">$45,676</td><td class="num">$14,076</td><td class="num">113</td><td class="num">7.1x</td><td class="num"><span class="tag tag-green">3.24x</span></td></tr>
-          <tr style="background:#0d1224"><td>Mar</td><td>🇦🇺 AU</td><td class="num">34</td><td class="num">35</td><td class="num">$39,540</td><td class="num">$13,817</td><td class="num">91</td><td class="num">6.1x</td><td class="num"><span class="tag tag-green">2.86x</span></td></tr>
-          <tr style="background:#1a0d2e"><td>Mar</td><td>🇨🇦 CA</td><td class="num">11</td><td class="num">11</td><td class="num">$13,180</td><td class="num">~$2,500</td><td class="num">17</td><td class="num">7.0x</td><td class="num"><span class="tag tag-green">5.27x ⭐</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="grid-2">
-      <div class="chart-box"><h3>Snuggle US — Spend vs Revenue</h3><div class="chart-wrap"><canvas id="snuggleUsChart"></canvas></div></div>
-      <div class="chart-box"><h3>Snuggle AU — Spend vs Revenue</h3><div class="chart-wrap"><canvas id="snuggleAuChart"></canvas></div></div>
-    </div>
-
-    <div class="chart-box" style="border-left:4px solid var(--danger)">
-      <h3>⚠️ Snuggle Warnings</h3>
-      <div style="font-size:14px;line-height:2;padding:10px">
-        <div>📉 <strong>US MER collapsing as we scale</strong> — Jan 11.6x → Feb 4.5x → Mar 2.5x. Spend went from $3K → $9K → $24K (8x). Revenue only doubled.</div>
-        <div>💸 <strong>March US Snuggle CPA: $376</strong> — vs Jan $154. We're paying 2.4x more per purchase as spend grows.</div>
-        <div>🔴 <strong>2.48x MER is below most margin profiles</strong> — at 23% discount + COGS + shipping, this is breakeven at best.</div>
-        <div>💡 <strong>AU Snuggle MER stable at 3-3.3x</strong> — but lower than Cushie's 6.6x. Similar pattern, less dramatic.</div>
-        <div>🌟 <strong>The bright spot: Canada</strong> — Mar saw 11 Snuggle CA orders, 5.3x MER. Fastest-growing region for any product.</div>
-        <div>🎯 <strong>What would help:</strong> Fix US post-click experience, find the one creative that breaks the pattern, or pull spend back to where MER works (~$10K/mo)</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ========== TAB: BY REGION ========== -->
-<div class="tab-content" id="regions">
-  <div class="section-title">🌍 Region Deep Dive</div>
-
-  <div class="chart-box" style="border-left:4px solid var(--us)">
-    <h3>🇺🇸 United States — cushiehome.com (USD)</h3>
-    <div class="metrics-row" style="margin-top:14px">
-      <div class="mc"><div class="l">Q1 Net Revenue</div><div class="v">$586K</div><div class="s">USD</div></div>
-      <div class="mc"><div class="l">Cushie</div><div class="v" style="color:var(--cushie)">$450K</div><div class="s">76% · 6.52x MER</div></div>
-      <div class="mc"><div class="l">Snuggle</div><div class="v" style="color:var(--snuggle)">$136K</div><div class="s">24% · 3.75x MER</div></div>
-      <div class="mc"><div class="l">Total Orders</div><div class="v">651</div><div class="s">531 Cushie + 120 Snuggle</div></div>
-      <div class="mc"><div class="l">Meta Spend</div><div class="v">$105K</div><div class="s">USD</div></div>
-      <div class="mc"><div class="l">Discount Rate</div><div class="v warn">23.0%</div><div class="s">$177K Q1</div></div>
-    </div>
-    <p style="font-size:14px;line-height:1.7;padding:10px">
-      <strong>Story:</strong> Cushie carries the US store. 6.5x MER and accelerating. Snuggle is growing fast (31→51 orders) but burning efficiency as spend scales (11.6x → 2.5x MER). The tension: Snuggle has higher AOV ($1,511) but can't get cold traffic to convert profitably yet. Need to fix Snuggle creative or pull back spend.
-    </p>
-  </div>
-
-  <div class="chart-box" style="border-left:4px solid var(--au)">
-    <h3>🇦🇺 Australia — lifely.com.au Cushie line items (AUD)</h3>
-    <div class="metrics-row" style="margin-top:14px">
-      <div class="mc"><div class="l">Q1 Gross Revenue</div><div class="v">$445K</div><div class="s">AUD (Cushie+Snuggle)</div></div>
-      <div class="mc"><div class="l">Cushie</div><div class="v" style="color:var(--cushie)">$282K</div><div class="s">63% · 6.65x MER</div></div>
-      <div class="mc"><div class="l">Snuggle</div><div class="v" style="color:var(--snuggle)">$163K</div><div class="s">37% · 3.88x MER</div></div>
-      <div class="mc"><div class="l">Total Orders</div><div class="v">383</div><div class="s">271 Cushie + 112 Snuggle</div></div>
-      <div class="mc"><div class="l">Meta Spend</div><div class="v">$84K</div><div class="s">AUD</div></div>
-      <div class="mc"><div class="l">Google Ads</div><div class="v warn">~$39K</div><div class="s">AUD/mo · No data</div></div>
-    </div>
-    <p style="font-size:14px;line-height:1.7;padding:10px">
-      <strong>Story:</strong> Same pattern as US — Cushie at 6.6x MER, Snuggle at 3.9x. AU Cushie orders dropped in Feb (109→76→86) and didn't fully recover. Worth investigating: was it stock, creative fatigue, or seasonality? AU Snuggle is more stable at ~$45K AUD/month. Without Google Ads data, total picture is incomplete.
-    </p>
-  </div>
-
-  <div class="chart-box" style="border-left:4px solid var(--ca)">
-    <h3>🇨🇦 Canada — lifely.com.au orders shipped to CA (AUD)</h3>
-    <div class="metrics-row" style="margin-top:14px">
-      <div class="mc"><div class="l">Q1 Gross Revenue</div><div class="v">$28K</div><div class="s">AUD</div></div>
-      <div class="mc"><div class="l">Cushie</div><div class="v">$7K</div><div class="s">7 orders</div></div>
-      <div class="mc"><div class="l">Snuggle</div><div class="v" style="color:var(--snuggle)">$21K</div><div class="s up">18 orders 🚀</div></div>
-      <div class="mc"><div class="l">Trend</div><div class="v up">2→5→18</div><div class="s">Mar = 72% of Q1</div></div>
-      <div class="mc"><div class="l">CA Snuggle ROAS</div><div class="v up">~7x</div><div class="s">On $3.5K spend</div></div>
-    </div>
-    <p style="font-size:14px;line-height:1.7;padding:10px">
-      <strong>Story:</strong> Canada is the breakout story — and it's a Snuggle story. 11 Snuggle orders in March alone (vs 2 in Jan). The CA Snuggle ABO + MOFU campaigns spent only $3.5K AUD with ~7x ROAS. Canada is the only region where Snuggle outsells Cushie. Worth a real budget test in Q2.
-    </p>
-  </div>
-
-  <div class="chart-box" style="border-left:4px solid var(--nz)">
-    <h3>🇳🇿 New Zealand — lifely.com.au orders shipped to NZ (AUD)</h3>
-    <div class="metrics-row" style="margin-top:14px">
-      <div class="mc"><div class="l">Q1 Revenue</div><div class="v">$8K</div><div class="s">AUD</div></div>
-      <div class="mc"><div class="l">Orders</div><div class="v down">6</div><div class="s">2→3→1 ↘</div></div>
-      <div class="mc"><div class="l">Cushie Only</div><div class="v">100%</div><div class="s">No Snuggle yet</div></div>
-      <div class="mc"><div class="l">AOV</div><div class="v">$1,324</div><div class="s">Highest AOV</div></div>
-    </div>
-    <p style="font-size:14px;line-height:1.7;padding:10px">
-      <strong>Story:</strong> Tiny and shrinking. Worth testing Snuggle in NZ given how it's catching on in CA, or accept this is a deprioritized market.
-    </p>
-  </div>
-</div>
-
-<!-- ========== TAB: ADS & MER ========== -->
-<div class="tab-content" id="ads">
-  <div class="section-title">📣 Ad Performance & MER</div>
-
-  <div class="warn-box">⚠️ <strong>Google Ads not included.</strong> Chris confirmed ~$39K AUD/month spend running through an account I don't have API access to. All MER numbers below are <strong>Meta-only</strong> and will be lower once Google is included.</div>
-
-  <div class="chart-box">
-    <h3>🎯 Q1 MER Summary — Cushie vs Snuggle by Region</h3>
+  <div class="chart-box" style="border-left:4px solid var(--cushie)">
+    <h3 style="color:var(--cushie)">🛋️ Cushie Modular — All Countries Q1</h3>
     <table>
-      <thead><tr><th>Product</th><th>Region</th><th class="num">Net Revenue</th><th class="num">Meta Spend</th><th class="num">Meta ROAS</th><th class="num">MER (Meta only)</th><th>Verdict</th></tr></thead>
+      <thead><tr><th>Country</th><th class="num">Orders</th><th class="num">Revenue (local)</th><th class="num">Revenue (AUD)</th><th class="num">Meta Spend</th><th class="num">MER</th></tr></thead>
       <tbody>
-        <tr style="background:rgba(139,92,246,.05)"><td>🛋️ Cushie</td><td>🇺🇸 US (USD)</td><td class="num">$450,082</td><td class="num">$68,989</td><td class="num">3.4x</td><td class="num" style="font-weight:700;color:var(--success)">6.52x</td><td><span class="tag tag-green">SCALE</span></td></tr>
-        <tr style="background:rgba(139,92,246,.05)"><td>🛋️ Cushie</td><td>🇦🇺 AU (AUD)</td><td class="num">$282,259</td><td class="num">$42,443</td><td class="num">5.6x</td><td class="num" style="font-weight:700;color:var(--success)">6.65x</td><td><span class="tag tag-green">SCALE</span></td></tr>
-        <tr style="background:rgba(236,72,153,.05)"><td>🛏️ Snuggle</td><td>🇺🇸 US (USD)</td><td class="num">$136,396</td><td class="num">$36,391</td><td class="num">3.0x</td><td class="num" style="font-weight:700;color:var(--warning)">3.75x</td><td><span class="tag tag-yellow">FIX FIRST</span></td></tr>
-        <tr style="background:rgba(236,72,153,.05)"><td>🛏️ Snuggle</td><td>🇦🇺 AU (AUD)</td><td class="num">$162,740</td><td class="num">$41,904</td><td class="num">7.5x</td><td class="num" style="font-weight:700;color:var(--warning)">3.88x</td><td><span class="tag tag-yellow">OPTIMIZE</span></td></tr>
+        <tr><td>🇺🇸 US</td><td class="num">531</td><td class="num">$450K USD</td><td class="num">$650K AUD</td><td class="num">$99K AUD</td><td class="num"><span class="tag tag-green">6.52x</span></td></tr>
+        <tr><td>🇦🇺 AU</td><td class="num">271</td><td class="num">$260K AUD</td><td class="num">$260K AUD</td><td class="num">$42K AUD</td><td class="num"><span class="tag tag-green">6.13x</span></td></tr>
+        <tr><td>🇨🇦 CA</td><td class="num">7</td><td class="num">$7K AUD</td><td class="num">$7K AUD</td><td class="num">~$2K</td><td class="num"><span class="tag tag-green">~4x</span></td></tr>
+        <tr><td>🇳🇿 NZ</td><td class="num">6</td><td class="num">$8K AUD</td><td class="num">$8K AUD</td><td class="num">$2.5K</td><td class="num"><span class="tag tag-green">3.2x</span></td></tr>
+        <tr style="font-weight:700;border-top:2px solid var(--cushie)"><td>Cushie Total</td><td class="num">815</td><td class="num">—</td><td class="num">$925K AUD</td><td class="num">$145K AUD</td><td class="num">6.38x</td></tr>
       </tbody>
     </table>
-    <p class="note">ROAS = Meta-attributed revenue / Meta spend. MER = total Shopify revenue / Meta spend. MER &gt; ROAS means organic/direct/repeat are contributing.</p>
+  </div>
+
+  <div class="chart-box" style="border-left:4px solid var(--snuggle)">
+    <h3 style="color:var(--snuggle)">🛏️ Snuggle — All Countries Q1</h3>
+    <table>
+      <thead><tr><th>Country</th><th class="num">Orders</th><th class="num">Revenue (local)</th><th class="num">Revenue (AUD)</th><th class="num">Meta Spend</th><th class="num">MER</th></tr></thead>
+      <tbody>
+        <tr><td>🇺🇸 US</td><td class="num">120</td><td class="num">$136K USD</td><td class="num">$197K AUD</td><td class="num">$53K AUD</td><td class="num"><span class="tag tag-warning">3.75x</span></td></tr>
+        <tr><td>🇦🇺 AU</td><td class="num">112</td><td class="num">$132K AUD</td><td class="num">$132K AUD</td><td class="num">$38K AUD</td><td class="num"><span class="tag tag-warning">3.14x</span></td></tr>
+        <tr><td>🇨🇦 CA ⭐</td><td class="num">18</td><td class="num">$21K AUD</td><td class="num">$21K AUD</td><td class="num">$3.5K AUD</td><td class="num"><span class="tag tag-green">~6x</span></td></tr>
+        <tr><td>🇳🇿 NZ</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr style="font-weight:700;border-top:2px solid var(--snuggle)"><td>Snuggle Total</td><td class="num">250</td><td class="num">—</td><td class="num">$350K AUD</td><td class="num">$94K AUD</td><td class="num">3.70x</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="chart-box"><h3>Cushie Q1 Orders by Country</h3><div class="chart-wrap"><canvas id="cushieByCountry"></canvas></div></div>
+    <div class="chart-box"><h3>Snuggle Q1 Orders by Country</h3><div class="chart-wrap"><canvas id="snuggleByCountry"></canvas></div></div>
+  </div>
+
+  <div class="chart-box" style="border-left:4px solid var(--primary)">
+    <h3>🔑 Cross-Country Product Insights</h3>
+    <div style="font-size:14px;line-height:2;padding:10px">
+      <div>🛋️ <strong>Cushie MER is consistent at ~6.5x in US and AU</strong> — product-market fit travels. CA/NZ too small to judge.</div>
+      <div>🛏️ <strong>Snuggle MER is consistent at ~3.7x in US and AU</strong> — same efficiency problem exists in both markets. Not a market issue, a product/creative issue.</div>
+      <div>🇨🇦 <strong>CA Snuggle is the outlier</strong> — 6x MER on tiny spend. Either early promise or statistical noise. Worth a real budget test.</div>
+      <div>💰 <strong>Cushie generates 73% of total gross revenue</strong> ($925K of $1.28M AUD) with only 60% of the Meta spend. It's the efficient scale lever.</div>
+      <div>⚠️ <strong>Snuggle is 30% of revenue but 40% of spend</strong> — the inverse. Every dollar we move from Snuggle to Cushie improves blended MER.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TARGETS ========== -->
+<div class="tab-content" id="targets">
+  <div class="section-title">🎯 Q1 vs Target · Q2 Targets from Model</div>
+
+  <div class="warn-box">📊 Sheet targets are in <strong>AUD</strong>. US Actuals are in USD — converted at 1 USD = 1.4451 AUD.</div>
+
+  <div class="chart-box">
+    <h3>📉 Q1 Target vs Actual — All Products × Countries (AUD)</h3>
+    <table>
+      <thead><tr><th>Product</th><th>Country</th><th class="num">Q1 Target</th><th class="num">Q1 Actual</th><th class="num">Δ</th><th class="num">Δ%</th></tr></thead>
+      <tbody>
+        <tr><td>🛋️ Cushie V2</td><td>🇺🇸 US</td><td class="num">$818,400</td><td class="num">$650,405 *</td><td class="num" style="color:var(--danger)">-$167,995</td><td class="num"><span class="tag tag-red">-21%</span></td></tr>
+        <tr><td>🛋️ Cushie V2</td><td>🇦🇺 AU</td><td class="num">$429,545</td><td class="num">$260,223</td><td class="num" style="color:var(--danger)">-$169,322</td><td class="num"><span class="tag tag-red">-39%</span></td></tr>
+        <tr><td>🛋️ Cushie V2</td><td>🇨🇦 CA</td><td class="num">$34,100</td><td class="num">$6,822</td><td class="num" style="color:var(--danger)">-$27,278</td><td class="num"><span class="tag tag-red">-80%</span></td></tr>
+        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇺🇸 US</td><td class="num">$195,500</td><td class="num">$197,100 *</td><td class="num" style="color:var(--success)">+$1,600</td><td class="num"><span class="tag tag-green">+1%</span></td></tr>
+        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇦🇺 AU</td><td class="num">$151,154</td><td class="num">$131,536</td><td class="num" style="color:var(--danger)">-$19,618</td><td class="num"><span class="tag tag-red">-13%</span></td></tr>
+        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇨🇦 CA</td><td class="num">$127,500</td><td class="num">$20,836</td><td class="num" style="color:var(--danger)">-$106,664</td><td class="num"><span class="tag tag-red">-84%</span></td></tr>
+        <tr style="font-weight:700;border-top:2px solid var(--primary)"><td colspan="2">TOTAL</td><td class="num">$1,756,199</td><td class="num">$1,266,922</td><td class="num" style="color:var(--danger)">-$489,277</td><td class="num"><span class="tag tag-red">-28%</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">* US actuals converted AUD. Q1 fell $490K AUD short of model. Cushie V2 missed across all 3 countries. Snuggle US is only segment on target. CA massively under-target (low actual volume — ~85% miss).</p>
   </div>
 
   <div class="chart-box">
-    <h3>📅 Monthly MER Trend</h3>
+    <h3>📈 Q2 Targets from Financial Model (AUD)</h3>
     <table>
-      <thead><tr><th>Product</th><th>Region</th><th class="num">Jan MER</th><th class="num">Feb MER</th><th class="num">Mar MER</th><th>Direction</th></tr></thead>
+      <thead><tr><th>Product</th><th>Country</th><th class="num">April</th><th class="num">May</th><th class="num">June</th><th class="num">Q2 Total</th><th class="num">Monthly Ad Budget</th></tr></thead>
+      <tbody>
+        <tr><td>🛋️ Cushie V2</td><td>🇺🇸 US</td><td class="num">$341,000</td><td class="num">$545,600</td><td class="num">$409,200</td><td class="num" style="font-weight:700">$1,295,800</td><td class="num">$31K–$45K</td></tr>
+        <tr><td>🛋️ Cushie V2</td><td>🇦🇺 AU</td><td class="num">$219,375</td><td class="num">$285,188</td><td class="num">$313,706</td><td class="num" style="font-weight:700">$818,269</td><td class="num">$20K–$24K</td></tr>
+        <tr><td>🛋️ Cushie V2</td><td>🇨🇦 CA</td><td class="num">$0</td><td class="num">$0</td><td class="num">$81,840</td><td class="num" style="font-weight:700">$81,840</td><td class="num">$0–$6K</td></tr>
+        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇺🇸 US</td><td class="num">$102,000</td><td class="num">$119,000</td><td class="num">$136,000</td><td class="num" style="font-weight:700">$357,000</td><td class="num">$9K–$10K</td></tr>
+        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇦🇺 AU</td><td class="num">$69,764</td><td class="num">$81,391</td><td class="num">$93,018</td><td class="num" style="font-weight:700">$244,173</td><td class="num">$6K–$7K</td></tr>
+        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇨🇦 CA</td><td class="num">$68,000</td><td class="num">$85,000</td><td class="num">$85,000</td><td class="num" style="font-weight:700">$238,000</td><td class="num">$6K–$7K</td></tr>
+        <tr style="font-weight:700;border-top:2px solid var(--primary)"><td colspan="2">TOTAL</td><td class="num">$800,139</td><td class="num">$1,116,179</td><td class="num">$1,118,764</td><td class="num">$3,035,082</td><td class="num">$72K–$99K/mo</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Financial model assumes 12x ROAS across the board to hit these targets. Q1 actuals came in at 3-7x ROAS. Either the targets need revising or there's a dramatic efficiency leap required.</p>
+  </div>
+
+  <div class="chart-box">
+    <h3>🔍 Q1 Actual Trajectory → Q2 Target Gap</h3>
+    <div class="chart-wrap"><canvas id="targetGapChart"></canvas></div>
+  </div>
+
+  <div class="chart-box">
+    <h3>💰 Add Google Ads Spend (not in API)</h3>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:12px">Chris mentioned ~$39K AUD/month running through Google. Enter the Q1 monthly spend below to recalculate blended MER.</p>
+    <table>
+      <thead><tr><th>Month</th><th class="num">Meta Spend (Q1)</th><th class="num">Google Spend (add)</th><th class="num">Total Ad Spend</th><th class="num">Revenue (AUD)</th><th class="num">Blended MER</th></tr></thead>
+      <tbody>
+        <tr><td>January</td><td class="num">$77,994</td><td class="num"><input class="edit-input" id="goog-jan" value="39,000" onchange="updateGoogleMer()"></td><td class="num" id="total-jan"></td><td class="num">$462,280</td><td class="num" id="mer-jan"></td></tr>
+        <tr><td>February</td><td class="num">$53,722</td><td class="num"><input class="edit-input" id="goog-feb" value="39,000" onchange="updateGoogleMer()"></td><td class="num" id="total-feb"></td><td class="num">$453,352</td><td class="num" id="mer-feb"></td></tr>
+        <tr><td>March</td><td class="num">$68,732</td><td class="num"><input class="edit-input" id="goog-mar" value="39,000" onchange="updateGoogleMer()"></td><td class="num" id="total-mar"></td><td class="num">$494,311</td><td class="num" id="mer-mar"></td></tr>
+        <tr style="font-weight:700"><td>Q1</td><td class="num">$200,448</td><td class="num" id="goog-q1">$117,000</td><td class="num" id="total-q1"></td><td class="num">$1,409,943</td><td class="num" id="mer-q1"></td></tr>
+      </tbody>
+    </table>
+    <p class="note">All AUD. Meta spend = US account converted to AUD + AU account. Revenue = US converted to AUD + AU gross.</p>
+  </div>
+</div>
+
+<!-- ========== MER & ADS ========== -->
+<div class="tab-content" id="mer">
+  <div class="section-title">📣 MER & Meta Ads</div>
+
+  <div class="warn-box">
+    ⚠️ MER below is <strong>Meta-only</strong>. Google Ads (~$39K AUD/mo per Chris) not included. Use the Q1 vs Target tab to add Google spend and see blended MER.
+  </div>
+
+  <div class="chart-box">
+    <h3>🎯 Q1 MER Matrix — Cushie vs Snuggle × Country</h3>
+    <table>
+      <thead><tr><th>Product</th><th>Country</th><th class="num">Revenue</th><th class="num">Meta Spend</th><th class="num">Meta ROAS</th><th class="num">MER</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>🛋️ Cushie</td><td>🇺🇸 US</td><td class="num">$450K USD</td><td class="num">$69K USD</td><td class="num">3.4x</td><td class="num" style="font-weight:700;color:var(--success)">6.52x</td><td><span class="tag tag-green">SCALE</span></td></tr>
+        <tr><td>🛋️ Cushie</td><td>🇦🇺 AU</td><td class="num">$260K AUD</td><td class="num">$42K AUD</td><td class="num">5.6x</td><td class="num" style="font-weight:700;color:var(--success)">6.13x</td><td><span class="tag tag-green">SCALE</span></td></tr>
+        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇺🇸 US</td><td class="num">$136K USD</td><td class="num">$36K USD</td><td class="num">3.0x</td><td class="num" style="font-weight:700;color:var(--warning)">3.75x</td><td><span class="tag tag-yellow">FIX FIRST</span></td></tr>
+        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇦🇺 AU</td><td class="num">$132K AUD</td><td class="num">$42K AUD</td><td class="num">7.5x</td><td class="num" style="font-weight:700;color:var(--warning)">3.14x</td><td><span class="tag tag-yellow">AUDIT ATTRIBUTION</span></td></tr>
+        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇨🇦 CA</td><td class="num">$21K AUD</td><td class="num">$3.5K AUD</td><td class="num">6.9x</td><td class="num" style="font-weight:700;color:var(--success)">~6x</td><td><span class="tag tag-green">SCALE CAREFULLY</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">AU Snuggle: Meta reports $312K attributed revenue on $42K spend but Shopify only shows $132K in Snuggle line items. Either campaigns are driving Cushie buys (crossover) or attribution window is over-counting. Need to reconcile.</p>
+  </div>
+
+  <div class="chart-box">
+    <h3>📅 Monthly MER Trajectory</h3>
+    <table>
+      <thead><tr><th>Product</th><th>Country</th><th class="num">Jan</th><th class="num">Feb</th><th class="num">Mar</th><th>Direction</th></tr></thead>
       <tbody>
         <tr><td>🛋️ Cushie</td><td>🇺🇸 US</td><td class="num">4.52x</td><td class="num">7.33x</td><td class="num" style="color:var(--success);font-weight:700">8.52x ⭐</td><td><span class="tag tag-green">↗ Accelerating</span></td></tr>
         <tr><td>🛋️ Cushie</td><td>🇦🇺 AU</td><td class="num">5.64x</td><td class="num">7.16x</td><td class="num">6.02x</td><td><span class="tag tag-green">→ Strong</span></td></tr>
-        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇺🇸 US</td><td class="num">11.58x</td><td class="num">4.46x</td><td class="num" style="color:var(--danger);font-weight:700">2.48x ⚠️</td><td><span class="tag tag-red">↘ Collapsing as scaled</span></td></tr>
+        <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇺🇸 US</td><td class="num">11.58x</td><td class="num">4.46x</td><td class="num" style="color:var(--danger);font-weight:700">2.48x ⚠️</td><td><span class="tag tag-red">↘ Collapsing</span></td></tr>
         <tr style="background:#1a0d2e"><td>🛏️ Snuggle</td><td>🇦🇺 AU</td><td class="num">3.31x</td><td class="num">3.24x</td><td class="num">2.86x</td><td><span class="tag tag-yellow">↘ Slow decline</span></td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="grid-2">
-    <div class="chart-box"><h3>Cushie vs Snuggle — US MER Trend</h3><div class="chart-wrap"><canvas id="usMerChart"></canvas></div></div>
-    <div class="chart-box"><h3>Cushie vs Snuggle — AU MER Trend</h3><div class="chart-wrap"><canvas id="auMerChart"></canvas></div></div>
+    <div class="chart-box"><h3>US MER Trend — Cushie vs Snuggle</h3><div class="chart-wrap"><canvas id="usMerChart"></canvas></div></div>
+    <div class="chart-box"><h3>AU MER Trend — Cushie vs Snuggle</h3><div class="chart-wrap"><canvas id="auMerChart"></canvas></div></div>
   </div>
 
   <div class="chart-box" style="border-left:4px solid var(--us)">
     <h3>🇺🇸 US Meta Campaigns — Q1 (USD)</h3>
     <table>
-      <thead><tr><th>Campaign</th><th>Product</th><th class="num">Spend</th><th class="num">Purch</th><th class="num">Revenue</th><th class="num">ROAS</th><th>Action</th></tr></thead>
+      <thead><tr><th>Campaign</th><th>Product</th><th class="num">Spend</th><th class="num">Revenue</th><th class="num">ROAS</th><th>Action</th></tr></thead>
       <tbody>
-        <tr style="background:#052e16"><td>⭐ Branded Post CBO</td><td>Cushie</td><td class="num">$9,548</td><td class="num">70</td><td class="num">$68,379</td><td class="num"><span class="tag tag-green">7.2x</span></td><td><span class="tag tag-green">SCALE</span></td></tr>
-        <tr><td>Cushie ASC V2 Scale</td><td>Cushie</td><td class="num">$34,523</td><td class="num">107</td><td class="num">$99,690</td><td class="num"><span class="tag tag-yellow">2.9x</span></td><td><span class="tag tag-yellow">MAINTAIN</span></td></tr>
-        <tr><td>Cushie CBO MOF</td><td>Cushie</td><td class="num">$4,388</td><td class="num">26</td><td class="num">$21,394</td><td class="num"><span class="tag tag-green">4.9x</span></td><td><span class="tag tag-green">SCALE</span></td></tr>
-        <tr><td>Cushie ABO Creative Test</td><td>Cushie</td><td class="num">$18,988</td><td class="num">50</td><td class="num">$45,302</td><td class="num"><span class="tag tag-red">2.4x</span></td><td><span class="tag tag-red">REVIEW</span></td></tr>
-        <tr style="background:#1a0d2e"><td>Snuggle ASC Creative Test</td><td>Snuggle</td><td class="num">$13,682</td><td class="num">55</td><td class="num">$55,037</td><td class="num"><span class="tag tag-green">4.0x</span></td><td><span class="tag tag-green">SCALE</span></td></tr>
-        <tr style="background:#1a0d2e"><td>Snuggle Sofa Scale</td><td>Snuggle</td><td class="num">$18,711</td><td class="num">52</td><td class="num">$48,189</td><td class="num"><span class="tag tag-yellow">2.6x</span></td><td><span class="tag tag-yellow">OPTIMIZE</span></td></tr>
-        <tr style="background:#1a0d2e"><td>CA Snuggle ABO</td><td>Snuggle</td><td class="num">$1,378</td><td class="num">1</td><td class="num">$1,224</td><td class="num"><span class="tag tag-red">0.9x</span></td><td><span class="tag tag-red">PAUSE</span></td></tr>
+        <tr style="background:#052e16"><td>⭐ Branded Post CBO</td><td>Cushie</td><td class="num">$9,548</td><td class="num">$68,379</td><td class="num"><span class="tag tag-green">7.2x</span></td><td><span class="tag tag-green">SCALE</span></td></tr>
+        <tr><td>Cushie ASC V2 Scale</td><td>Cushie</td><td class="num">$34,523</td><td class="num">$99,690</td><td class="num"><span class="tag tag-yellow">2.9x</span></td><td><span class="tag tag-yellow">MAINTAIN</span></td></tr>
+        <tr><td>Cushie CBO MOF</td><td>Cushie</td><td class="num">$4,388</td><td class="num">$21,394</td><td class="num"><span class="tag tag-green">4.9x</span></td><td><span class="tag tag-green">SCALE</span></td></tr>
+        <tr><td>Cushie ABO Creative Test</td><td>Cushie</td><td class="num">$18,988</td><td class="num">$45,302</td><td class="num"><span class="tag tag-red">2.4x</span></td><td><span class="tag tag-red">REVIEW</span></td></tr>
+        <tr style="background:#1a0d2e"><td>Snuggle ASC Creative Test</td><td>Snuggle</td><td class="num">$13,682</td><td class="num">$55,037</td><td class="num"><span class="tag tag-green">4.0x</span></td><td><span class="tag tag-green">SCALE</span></td></tr>
+        <tr style="background:#1a0d2e"><td>Snuggle Sofa Scale</td><td>Snuggle</td><td class="num">$18,711</td><td class="num">$48,189</td><td class="num"><span class="tag tag-yellow">2.6x</span></td><td><span class="tag tag-yellow">OPTIMIZE</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -437,116 +543,65 @@ tr:hover{background:var(--card2)}
   <div class="chart-box" style="border-left:4px solid var(--au)">
     <h3>🇦🇺 AU Meta Campaigns — Q1 (AUD)</h3>
     <table>
-      <thead><tr><th>Campaign</th><th>Product</th><th class="num">Spend</th><th class="num">Purch</th><th class="num">Revenue</th><th class="num">ROAS</th></tr></thead>
+      <thead><tr><th>Campaign</th><th>Product</th><th class="num">Spend</th><th class="num">Revenue</th><th class="num">ROAS</th></tr></thead>
       <tbody>
-        <tr style="background:#052e16"><td>⭐ Snuggle Creative Test ABO</td><td>Snuggle</td><td class="num">$18,858</td><td class="num">158</td><td class="num">$140,643</td><td class="num"><span class="tag tag-green">7.5x</span></td></tr>
-        <tr style="background:#052e16"><td>⭐ Snuggle Scaling</td><td>Snuggle</td><td class="num">$17,036</td><td class="num">82</td><td class="num">$86,307</td><td class="num"><span class="tag tag-green">5.1x</span></td></tr>
-        <tr><td>Cushie Max Conv Scaling</td><td>Cushie</td><td class="num">$21,921</td><td class="num">115</td><td class="num">$88,661</td><td class="num"><span class="tag tag-green">4.0x</span></td></tr>
-        <tr><td>Cushie Creative Test ABO</td><td>Cushie</td><td class="num">$10,886</td><td class="num">73</td><td class="num">$60,603</td><td class="num"><span class="tag tag-green">5.6x</span></td></tr>
-        <tr><td>Cushie MOFU</td><td>Cushie</td><td class="num">$2,472</td><td class="num">49</td><td class="num">$47,347</td><td class="num"><span class="tag tag-green">19.1x</span></td></tr>
-        <tr><td>Snuggle MOFU</td><td>Snuggle</td><td class="num">$2,356</td><td class="num">75</td><td class="num">$59,099</td><td class="num"><span class="tag tag-green">25.1x</span></td></tr>
-        <tr><td>NZ Cushie</td><td>Cushie</td><td class="num">$2,544</td><td class="num">11</td><td class="num">$11,711</td><td class="num"><span class="tag tag-green">4.6x</span></td></tr>
-        <tr><td>CA Snuggle (TOFU+MOFU)</td><td>Snuggle</td><td class="num">$3,498</td><td class="num">23</td><td class="num">$24,267</td><td class="num"><span class="tag tag-green">6.9x</span></td></tr>
+        <tr style="background:#052e16"><td>⭐ Snuggle Creative Test ABO</td><td>Snuggle</td><td class="num">$18,858</td><td class="num">$140,643</td><td class="num"><span class="tag tag-green">7.5x</span></td></tr>
+        <tr style="background:#052e16"><td>⭐ Snuggle Scaling</td><td>Snuggle</td><td class="num">$17,036</td><td class="num">$86,307</td><td class="num"><span class="tag tag-green">5.1x</span></td></tr>
+        <tr><td>Cushie Max Conv Scaling</td><td>Cushie</td><td class="num">$21,921</td><td class="num">$88,661</td><td class="num"><span class="tag tag-green">4.0x</span></td></tr>
+        <tr><td>Cushie Creative Test ABO</td><td>Cushie</td><td class="num">$10,886</td><td class="num">$60,603</td><td class="num"><span class="tag tag-green">5.6x</span></td></tr>
+        <tr><td>Cushie MOFU</td><td>Cushie</td><td class="num">$2,472</td><td class="num">$47,347</td><td class="num"><span class="tag tag-green">19.1x ⭐</span></td></tr>
+        <tr><td>Snuggle MOFU</td><td>Snuggle</td><td class="num">$2,356</td><td class="num">$59,099</td><td class="num"><span class="tag tag-green">25.1x ⭐</span></td></tr>
+        <tr><td>CA Snuggle (TOFU+MOFU)</td><td>Snuggle</td><td class="num">$3,498</td><td class="num">$24,267</td><td class="num"><span class="tag tag-green">6.9x</span></td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- ========== TAB: Q2 TARGETS ========== -->
-<div class="tab-content" id="targets">
-  <div class="section-title">🎯 Q2 Targets — Editable</div>
-  <p style="color:var(--text2);font-size:13px;margin-bottom:20px">Click any number to edit. Targets break down by product where it matters.</p>
-
-  <div class="chart-box">
-    <h3>🇺🇸 US Q2 Revenue Targets (USD)</h3>
-    <table>
-      <thead><tr><th>Month</th><th>Product</th><th class="num">Q1 Comparable</th><th class="num">Q2 Target</th><th class="num">Growth</th></tr></thead>
-      <tbody>
-        <tr><td>April</td><td>🛋️ Cushie</td><td class="num">$128,773 (Jan)</td><td class="num"><input class="edit-input" id="t-us-cushie-apr" value="160,000" onchange="updateTargets()"></td><td class="num" id="g-us-cushie-apr"></td></tr>
-        <tr><td>April</td><td>🛏️ Snuggle</td><td class="num">$35,535 (Jan)</td><td class="num"><input class="edit-input" id="t-us-snug-apr" value="55,000" onchange="updateTargets()"></td><td class="num" id="g-us-snug-apr"></td></tr>
-        <tr><td>May</td><td>🛋️ Cushie</td><td class="num">$147,672 (Feb)</td><td class="num"><input class="edit-input" id="t-us-cushie-may" value="190,000" onchange="updateTargets()"></td><td class="num" id="g-us-cushie-may"></td></tr>
-        <tr><td>May</td><td>🛏️ Snuggle</td><td class="num">$41,210 (Feb)</td><td class="num"><input class="edit-input" id="t-us-snug-may" value="65,000" onchange="updateTargets()"></td><td class="num" id="g-us-snug-may"></td></tr>
-        <tr><td>June</td><td>🛋️ Cushie</td><td class="num">$173,637 (Mar)</td><td class="num"><input class="edit-input" id="t-us-cushie-jun" value="220,000" onchange="updateTargets()"></td><td class="num" id="g-us-cushie-jun"></td></tr>
-        <tr><td>June</td><td>🛏️ Snuggle</td><td class="num">$59,651 (Mar)</td><td class="num"><input class="edit-input" id="t-us-snug-jun" value="80,000" onchange="updateTargets()"></td><td class="num" id="g-us-snug-jun"></td></tr>
-        <tr style="font-weight:700;border-top:2px solid var(--us)"><td>Q2</td><td>🇺🇸 TOTAL</td><td class="num">$586K (Q1)</td><td class="num" id="t-us-q2" style="font-size:18px;color:var(--us)"></td><td class="num" id="g-us-q2"></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="chart-box">
-    <h3>🇦🇺 AU Q2 Revenue Targets (AUD)</h3>
-    <table>
-      <thead><tr><th>Month</th><th>Product</th><th class="num">Q1 Comparable</th><th class="num">Q2 Target</th></tr></thead>
-      <tbody>
-        <tr><td>April</td><td>🛋️ Cushie</td><td class="num">$103,548 (Jan)</td><td class="num"><input class="edit-input" id="t-au-cushie-apr" value="100,000" onchange="updateTargets()"></td></tr>
-        <tr><td>April</td><td>🛏️ Snuggle</td><td class="num">$46,320 (Jan)</td><td class="num"><input class="edit-input" id="t-au-snug-apr" value="55,000" onchange="updateTargets()"></td></tr>
-        <tr><td>May</td><td>🛋️ Cushie</td><td class="num">$73,532 (Feb)</td><td class="num"><input class="edit-input" id="t-au-cushie-may" value="105,000" onchange="updateTargets()"></td></tr>
-        <tr><td>May</td><td>🛏️ Snuggle</td><td class="num">$45,676 (Feb)</td><td class="num"><input class="edit-input" id="t-au-snug-may" value="60,000" onchange="updateTargets()"></td></tr>
-        <tr><td>June</td><td>🛋️ Cushie</td><td class="num">$83,143 (Mar)</td><td class="num"><input class="edit-input" id="t-au-cushie-jun" value="115,000" onchange="updateTargets()"></td></tr>
-        <tr><td>June</td><td>🛏️ Snuggle</td><td class="num">$39,540 (Mar)</td><td class="num"><input class="edit-input" id="t-au-snug-jun" value="65,000" onchange="updateTargets()"></td></tr>
-        <tr style="font-weight:700;border-top:2px solid var(--au)"><td>Q2</td><td>🇦🇺 TOTAL</td><td class="num">$445K (Q1)</td><td class="num" id="t-au-q2" style="font-size:18px;color:var(--au)"></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="chart-box">
-    <h3>🇨🇦 CA + 🇳🇿 NZ Q2 Targets (AUD)</h3>
-    <table>
-      <thead><tr><th>Region</th><th class="num">Q1 Actual</th><th class="num">Q2 Target</th></tr></thead>
-      <tbody>
-        <tr><td>🇨🇦 Canada</td><td class="num">$28K</td><td class="num"><input class="edit-input" id="t-ca-q2" value="65,000" onchange="updateTargets()"></td></tr>
-        <tr><td>🇳🇿 New Zealand</td><td class="num">$8K</td><td class="num"><input class="edit-input" id="t-nz-q2" value="12,000" onchange="updateTargets()"></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="chart-box">
-    <h3>📣 Ad Spend Targets (Monthly)</h3>
-    <table>
-      <thead><tr><th>Account</th><th class="num">Q1 Avg</th><th class="num">Q1 MER</th><th class="num">Q2 Monthly Budget</th><th class="num">Target MER</th></tr></thead>
-      <tbody>
-        <tr><td>🇺🇸 US Meta — Cushie</td><td class="num">$23K USD</td><td class="num">6.52x</td><td class="num"><input class="edit-input" id="t-us-cushie-meta" value="28,000"></td><td class="num"><input class="edit-input" id="t-us-cushie-mer" value="6.5" style="width:60px"></td></tr>
-        <tr><td>🇺🇸 US Meta — Snuggle</td><td class="num">$12K USD</td><td class="num">3.75x</td><td class="num"><input class="edit-input" id="t-us-snug-meta" value="18,000"></td><td class="num"><input class="edit-input" id="t-us-snug-mer" value="4.0" style="width:60px"></td></tr>
-        <tr><td>🇦🇺 AU Meta — Cushie</td><td class="num">$14K AUD</td><td class="num">6.65x</td><td class="num"><input class="edit-input" id="t-au-cushie-meta" value="16,000"></td><td class="num"><input class="edit-input" id="t-au-cushie-mer" value="6.5" style="width:60px"></td></tr>
-        <tr><td>🇦🇺 AU Meta — Snuggle</td><td class="num">$14K AUD</td><td class="num">3.88x</td><td class="num"><input class="edit-input" id="t-au-snug-meta" value="18,000"></td><td class="num"><input class="edit-input" id="t-au-snug-mer" value="4.5" style="width:60px"></td></tr>
-        <tr><td>🇺🇸 Google Ads US</td><td class="num">$0</td><td class="num">—</td><td class="num"><input class="edit-input" id="t-us-google" value="10,000"></td><td class="num"><input class="edit-input" id="t-us-google-mer" value="4.0" style="width:60px"></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="chart-box">
-    <h3>Q1 → Q2 Revenue Bridge</h3>
-    <div class="chart-wrap"><canvas id="bridgeChart"></canvas></div>
-  </div>
-</div>
-
-<!-- ========== TAB: OKRs ========== -->
+<!-- ========== OKRs ========== -->
 <div class="tab-content" id="okr">
   <div class="section-title">📋 Q2 OKRs — Draft</div>
 
-  <div class="okr-obj">
-    <h3>🎯 O1: Scale Cushie Modular While Holding Efficiency</h3>
-    <div class="kr-item"><div><strong>KR1:</strong> US Cushie to $570K Q2 (vs $450K Q1) at 6.0x+ MER</div><div><select><option selected>Not started</option><option>In progress</option><option>On track</option><option>At risk</option><option>Done</option></select></div><div><input value="Allen"></div><div><input value="$570K @ 6x"></div><div><input type="range" min="0" max="100" value="0" oninput="this.nextElementSibling.textContent=this.value+'%'"><span style="font-size:11px;color:var(--text2)">0%</span></div></div>
-    <div class="kr-item"><div><strong>KR2:</strong> AU Cushie to $320K Q2 (vs $282K Q1)</div><div><select><option selected>Not started</option></select></div><div><input value="Allen"></div><div><input value="$320K"></div><div><input type="range" min="0" max="100" value="0" oninput="this.nextElementSibling.textContent=this.value+'%'"><span style="font-size:11px;color:var(--text2)">0%</span></div></div>
-    <div class="kr-item"><div><strong>KR3:</strong> Scale US Branded Post to $20K/mo at 5x+ ROAS</div><div><select><option selected>Not started</option></select></div><div><input value="Allen"></div><div><input value="$20K @ 5x"></div><div><input type="range" min="0" max="100" value="0" oninput="this.nextElementSibling.textContent=this.value+'%'"><span style="font-size:11px;color:var(--text2)">0%</span></div></div>
+  <div class="chart-box" style="border-left:4px solid var(--cushie)">
+    <h3>🎯 O1: Hit or Close to Model Targets on Cushie V2</h3>
+    <ul style="font-size:14px;line-height:2;padding-left:20px">
+      <li><strong>KR1:</strong> US Cushie V2 to $900K USD Q2 (model: $897K USD = $1.3M AUD)</li>
+      <li><strong>KR2:</strong> AU Cushie V2 to $650K AUD Q2 (model: $818K — we set 80%)</li>
+      <li><strong>KR3:</strong> Maintain blended Cushie MER &gt; 6.0x while scaling</li>
+      <li><strong>KR4:</strong> Scale US Branded Post to $20K/mo at 5x+ ROAS</li>
+    </ul>
   </div>
 
-  <div class="okr-obj">
-    <h3>🎯 O2: Fix Snuggle Unit Economics</h3>
-    <div class="kr-item"><div><strong>KR1:</strong> Bring US Snuggle MER from 2.48x → 4.0x by June</div><div><select><option selected>Not started</option></select></div><div><input value="Allen"></div><div><input value="4.0x MER"></div><div><input type="range" min="0" max="100" value="0" oninput="this.nextElementSibling.textContent=this.value+'%'"><span style="font-size:11px;color:var(--text2)">0%</span></div></div>
-    <div class="kr-item"><div><strong>KR2:</strong> 3 new winning Snuggle creatives (>4x ROAS at $3K+ spend)</div><div><select><option selected>Not started</option></select></div><div><input value="Mansell"></div><div><input value="3 winners"></div><div><input type="range" min="0" max="100" value="0" oninput="this.nextElementSibling.textContent=this.value+'%'"><span style="font-size:11px;color:var(--text2)">0%</span></div></div>
-    <div class="kr-item"><div><strong>KR3:</strong> Test Snuggle as lead product for cold US traffic</div><div><select><option selected>Not started</option></select></div><div><input value="Allen"></div><div><input value="Test live"></div><div><input type="range" min="0" max="100" value="0" oninput="this.nextElementSibling.textContent=this.value+'%'"><span style="font-size:11px;color:var(--text2)">0%</span></div></div>
+  <div class="chart-box" style="border-left:4px solid var(--snuggle)">
+    <h3>🎯 O2: Fix Snuggle Unit Economics + Scale Smart</h3>
+    <ul style="font-size:14px;line-height:2;padding-left:20px">
+      <li><strong>KR1:</strong> Bring US Snuggle MER from 2.48x → 4.0x by June</li>
+      <li><strong>KR2:</strong> 3 new winning Snuggle creatives (&gt;4x ROAS, $3K+ spend each)</li>
+      <li><strong>KR3:</strong> Audit AU Snuggle attribution — reconcile Meta vs Shopify gap</li>
+      <li><strong>KR4:</strong> Hit $300K USD Snuggle US Q2 (model: $247K USD = $357K AUD)</li>
+    </ul>
   </div>
 
-  <div class="okr-obj">
+  <div class="chart-box" style="border-left:4px solid var(--ca)">
     <h3>🎯 O3: Crack Canada + Build Data Infrastructure</h3>
-    <div class="kr-item"><div><strong>KR1:</strong> CA Snuggle to 30+ orders/month by June</div><div><select><option selected>Not started</option></select></div><div><input value="Allen"></div><div><input value="30/mo"></div><div><input type="range" min="0" max="100" value="0" oninput="this.nextElementSibling.textContent=this.value+'%'"><span style="font-size:11px;color:var(--text2)">0%</span></div></div>
-    <div class="kr-item"><div><strong>KR2:</strong> Get Caesar API access to Cushie Google Ads account</div><div><select><option selected>Not started</option></select></div><div><input value="Allen/Stephane"></div><div><input value="Connected"></div><div><input type="range" min="0" max="100" value="0" oninput="this.nextElementSibling.textContent=this.value+'%'"><span style="font-size:11px;color:var(--text2)">0%</span></div></div>
-    <div class="kr-item"><div><strong>KR3:</strong> Connect GA4 for cushiehome.com</div><div><select><option selected>Not started</option></select></div><div><input value="Stephane"></div><div><input value="Connected"></div><div><input type="range" min="0" max="100" value="0" oninput="this.nextElementSibling.textContent=this.value+'%'"><span style="font-size:11px;color:var(--text2)">0%</span></div></div>
+    <ul style="font-size:14px;line-height:2;padding-left:20px">
+      <li><strong>KR1:</strong> CA to 30+ orders/month by June (model: 50/mo Snuggle)</li>
+      <li><strong>KR2:</strong> Caesar gets API access to Google Ads account (need Allen/account ID)</li>
+      <li><strong>KR3:</strong> Connect GA4 for cushiehome.com for funnel visibility</li>
+      <li><strong>KR4:</strong> Decide: launch cushiehome.ca or keep going via lifely.com.au?</li>
+    </ul>
+  </div>
+
+  <div class="chart-box" style="border-left:4px solid var(--warning)">
+    <h3>🎯 O4: Fix Margin Drag</h3>
+    <ul style="font-size:14px;line-height:2;padding-left:20px">
+      <li><strong>KR1:</strong> Reduce US store discount rate from 23% to 18%</li>
+      <li><strong>KR2:</strong> Reduce refund rate from 4.7% to &lt;3%</li>
+      <li><strong>KR3:</strong> Brand response strategy for off-gassing (#1 negative review)</li>
+    </ul>
   </div>
 </div>
 
-<!-- ========== TAB: WORKSHOP ========== -->
+<!-- ========== WORKSHOP ========== -->
 <div class="tab-content" id="retro">
   <div class="section-title">💬 Q2 Planning Workshop</div>
 
@@ -554,19 +609,21 @@ tr:hover{background:var(--card2)}
     <div class="chart-box" style="border-left:4px solid var(--success)">
       <h3>✅ Keep Doing</h3>
       <ul style="font-size:14px;line-height:2;padding-left:20px">
-        <li><strong>Cushie Modular at full throttle</strong> — 6.5x MER in both regions, accelerating in US</li>
-        <li><strong>US Branded Post approach</strong> — 7.4x ROAS, biggest under-leveraged win</li>
-        <li><strong>AU MOFU retargeting</strong> — 19-25x ROAS. Max budget</li>
-        <li><strong>Multi-region testing</strong> — CA Snuggle proves the model travels</li>
+        <li>Cushie Modular at full throttle — 6.5x MER in both regions, accelerating US</li>
+        <li>US Branded Post approach — 7.4x ROAS, biggest under-leveraged win</li>
+        <li>AU MOFU retargeting — 19-25x ROAS. Max budget here</li>
+        <li>Multi-region Snuggle testing — CA proves the model travels</li>
+        <li>Tracking by product + country (this dashboard)</li>
       </ul>
     </div>
     <div class="chart-box" style="border-left:4px solid var(--danger)">
       <h3>🛑 Stop / Fix</h3>
       <ul style="font-size:14px;line-height:2;padding-left:20px">
-        <li><strong>US Snuggle Scale at $24K @ 2.48x MER</strong> — pull back until creative fixed</li>
-        <li><strong>US Cushie ABO Creative Test at 1.0x</strong> — kill or restructure</li>
-        <li><strong>23% discount rate on US store</strong> — promo calendar needed</li>
-        <li><strong>Flying without Google Ads visibility</strong> — get Caesar API access</li>
+        <li>US Snuggle Scale at $24K @ 2.48x MER — pull back until creative fixed</li>
+        <li>US Cushie ABO Creative Test at 2.4x — kill or restructure</li>
+        <li>23% discount rate on US store — promo calendar needed</li>
+        <li>Flying blind on Google spend — get Caesar access urgently</li>
+        <li>Chasing AU Cushie V2 target with current creatives — it's missing 30-40%</li>
       </ul>
     </div>
   </div>
@@ -575,22 +632,23 @@ tr:hover{background:var(--card2)}
     <div class="chart-box" style="border-left:4px solid var(--primary)">
       <h3>🧪 Try in Q2</h3>
       <ul style="font-size:14px;line-height:2;padding-left:20px">
-        <li><strong>Snuggle as cold-traffic lead in CA + US</strong> — it's working in CA</li>
-        <li><strong>Cushie → Snuggle email upsell</strong> — different price tiers, related need</li>
-        <li><strong>Google Ads PMax for cushiehome.com</strong> — high-intent channel still untapped</li>
-        <li><strong>Cushie advertorials</strong> — apartment living + guest room angles</li>
-        <li><strong>Real CA budget test</strong> — $5K/mo on Snuggle CA campaigns</li>
+        <li>Snuggle as cold-traffic lead in CA + US — it's working in CA</li>
+        <li>Cushie → Snuggle email upsell — different price tiers, related need</li>
+        <li>Google Ads PMax properly measured for cushiehome.com</li>
+        <li>Cushie advertorials — apartment living + guest room angles</li>
+        <li>Real CA budget test — $5K/mo on Snuggle CA</li>
+        <li>Reconcile AU Snuggle attribution gap (7.5x ROAS vs 3.1x MER)</li>
       </ul>
     </div>
     <div class="chart-box" style="border-left:4px solid var(--warning)">
       <h3>❓ Open Questions</h3>
       <ul style="font-size:14px;line-height:2;padding-left:20px">
-        <li>What's the true contribution margin per product per region after COGS, shipping, discounts?</li>
-        <li>Why did US Snuggle MER collapse so fast? Creative fatigue, audience exhaustion, or post-click problem?</li>
-        <li>Why did AU Cushie orders drop 30% in Feb? Stock, seasonality, or creative?</li>
-        <li>Can Caesar get access to the Google Ads account so we have full picture?</li>
-        <li>Should we launch cushiehome.ca to capture Canada properly?</li>
-        <li>Off-gassing #1 negative review — how do we address it before it damages the brand?</li>
+        <li>Why is AU Cushie V2 missing target by 30-40%? Stock, creative, market?</li>
+        <li>Is 12x ROAS in the model realistic or aspirational?</li>
+        <li>Why does AU Snuggle Meta ROAS (7.5x) disagree with MER (3.1x)?</li>
+        <li>True contribution margin per product per region after COGS + shipping + discounts?</li>
+        <li>Should we launch cushiehome.ca for Canada?</li>
+        <li>How do we handle off-gassing reviews proactively?</li>
       </ul>
     </div>
   </div>
@@ -599,7 +657,7 @@ tr:hover{background:var(--card2)}
 </div>
 
 <script>
-// ===== TABS =====
+// ===== TAB SWITCHING =====
 document.querySelectorAll('.tab').forEach(t=>{
   t.onclick=()=>{
     document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
@@ -609,116 +667,104 @@ document.querySelectorAll('.tab').forEach(t=>{
   };
 });
 
-// Product sub-tabs
-document.querySelectorAll('.product-tab').forEach(pt=>{
-  pt.onclick=()=>{
-    document.querySelectorAll('.product-tab').forEach(x=>x.classList.remove('active'));
-    pt.classList.add('active');
-    if(pt.dataset.product==='cushie'){
-      document.getElementById('cushie-content').style.display='block';
-      document.getElementById('snuggle-content').style.display='none';
-    }else{
-      document.getElementById('cushie-content').style.display='none';
-      document.getElementById('snuggle-content').style.display='block';
-    }
+document.querySelectorAll('.country-tab').forEach(ct=>{
+  ct.onclick=()=>{
+    document.querySelectorAll('.country-tab').forEach(x=>x.classList.remove('active'));
+    ct.classList.add('active');
+    ['us','au','ca','nz'].forEach(c=>{
+      document.getElementById('country-'+c).style.display = (c===ct.dataset.country)?'block':'none';
+    });
   };
 });
 
-const C={primary:'#8b5cf6',success:'#22c55e',warning:'#f59e0b',danger:'#ef4444',us:'#6366f1',au:'#f59e0b',cushie:'#8b5cf6',snuggle:'#ec4899',text2:'#a1a1aa'};
-const chartOpts=(yLabel)=>({responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#a1a1aa',font:{size:11}}}},scales:{x:{ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}},y:{ticks:{color:'#a1a1aa',callback:v=>'$'+v/1000+'K'},grid:{color:'#2a2e3a'}}}});
+const C={primary:'#8b5cf6',success:'#22c55e',warning:'#f59e0b',danger:'#ef4444',us:'#6366f1',au:'#f59e0b',ca:'#ef4444',nz:'#22c55e',cushie:'#8b5cf6',snuggle:'#ec4899'};
 
-// ===== OVERVIEW CHARTS =====
-new Chart(document.getElementById('ordersChart'),{
+// ===== CHARTS =====
+// Country pie
+new Chart(document.getElementById('countryPieChart'),{
+  type:'doughnut',
+  data:{labels:['🇺🇸 US','🇦🇺 AU','🇨🇦 CA','🇳🇿 NZ'],datasets:[{
+    data:[847133,445000,28000,8000],
+    backgroundColor:[C.us,C.au,C.ca,C.nz],borderWidth:0
+  }]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#e4e4e7',padding:12}}}}
+});
+
+// Monthly country bars (stacked)
+new Chart(document.getElementById('monthlyCountryChart'),{
   type:'bar',
   data:{labels:['Jan','Feb','Mar'],datasets:[
-    {label:'🛋️ Cushie US',data:[148,176,207],backgroundColor:C.cushie,borderRadius:4},
-    {label:'🛋️ Cushie AU',data:[109,76,86],backgroundColor:'rgba(139,92,246,.5)',borderRadius:4},
-    {label:'🛏️ Snuggle US',data:[31,38,51],backgroundColor:C.snuggle,borderRadius:4},
-    {label:'🛏️ Snuggle AU',data:[39,39,34],backgroundColor:'rgba(236,72,153,.5)',borderRadius:4}
+    {label:'🇺🇸 US (USD→AUD)',data:[247383,275204,333164],backgroundColor:C.us},
+    {label:'🇦🇺 AU',data:[149868,119208,120003],backgroundColor:C.au},
+    {label:'🇨🇦 CA',data:[1993,5663,20002],backgroundColor:C.ca},
+    {label:'🇳🇿 NZ',data:[2985,3107,1851],backgroundColor:C.nz}
   ]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#a1a1aa',font:{size:11}}}},scales:{x:{ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}},y:{ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}}}}
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#a1a1aa',font:{size:10}}}},scales:{x:{stacked:true,ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}},y:{stacked:true,ticks:{color:'#a1a1aa',callback:v=>'$'+v/1000+'K'},grid:{color:'#2a2e3a'}}}}
 });
 
-new Chart(document.getElementById('merChart'),{
+// Cushie by country
+new Chart(document.getElementById('cushieByCountry'),{
   type:'bar',
-  data:{labels:['🇺🇸 US','🇦🇺 AU'],datasets:[
-    {label:'🛋️ Cushie',data:[6.52,6.65],backgroundColor:C.cushie,borderRadius:6},
-    {label:'🛏️ Snuggle',data:[3.75,3.88],backgroundColor:C.snuggle,borderRadius:6}
-  ]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#a1a1aa'}}},scales:{x:{ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}},y:{ticks:{color:'#a1a1aa',callback:v=>v+'x'},grid:{color:'#2a2e3a'}}}}
+  data:{labels:['🇺🇸 US','🇦🇺 AU','🇨🇦 CA','🇳🇿 NZ'],datasets:[{
+    label:'Orders',data:[531,271,7,6],backgroundColor:C.cushie,borderRadius:6
+  }]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}},y:{ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}}}}
 });
 
-// ===== PRODUCT CHARTS =====
-const spendRevChart=(id,label,spendData,revData,color)=>{
-  new Chart(document.getElementById(id),{
-    type:'bar',
-    data:{labels:['Jan','Feb','Mar'],datasets:[
-      {label:'Net Revenue',data:revData,backgroundColor:color,borderRadius:4,yAxisID:'y'},
-      {label:'Meta Spend',data:spendData,backgroundColor:'rgba(239,68,68,.6)',borderRadius:4,yAxisID:'y'}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#a1a1aa'}}},scales:{x:{ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}},y:{ticks:{color:'#a1a1aa',callback:v=>'$'+v/1000+'K'},grid:{color:'#2a2e3a'}}}}
-  });
-};
+// Snuggle by country
+new Chart(document.getElementById('snuggleByCountry'),{
+  type:'bar',
+  data:{labels:['🇺🇸 US','🇦🇺 AU','🇨🇦 CA','🇳🇿 NZ'],datasets:[{
+    label:'Orders',data:[120,112,18,0],backgroundColor:C.snuggle,borderRadius:6
+  }]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}},y:{ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}}}}
+});
 
-spendRevChart('cushieUsChart','Cushie US',[28482,20133,20374],[128773,147672,173637],C.cushie);
-spendRevChart('cushieAuChart','Cushie AU',[18369,10267,13807],[103548,73532,83143],'rgba(139,92,246,.7)');
-spendRevChart('snuggleUsChart','Snuggle US',[3070,9246,24075],[35535,41210,59651],C.snuggle);
-spendRevChart('snuggleAuChart','Snuggle AU',[14011,14076,13817],[46320,45676,39540],'rgba(236,72,153,.7)');
-
-// ===== MER TREND CHARTS =====
-const merChart=(id,cushieData,snuggleData)=>{
+// MER charts
+const merChart=(id,cushie,snuggle)=>{
   new Chart(document.getElementById(id),{
     type:'line',
     data:{labels:['Jan','Feb','Mar'],datasets:[
-      {label:'🛋️ Cushie',data:cushieData,borderColor:C.cushie,backgroundColor:'rgba(139,92,246,.1)',fill:true,tension:.3,pointRadius:6},
-      {label:'🛏️ Snuggle',data:snuggleData,borderColor:C.snuggle,backgroundColor:'rgba(236,72,153,.1)',fill:true,tension:.3,pointRadius:6}
+      {label:'🛋️ Cushie',data:cushie,borderColor:C.cushie,backgroundColor:'rgba(139,92,246,.1)',fill:true,tension:.3,pointRadius:6},
+      {label:'🛏️ Snuggle',data:snuggle,borderColor:C.snuggle,backgroundColor:'rgba(236,72,153,.1)',fill:true,tension:.3,pointRadius:6}
     ]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#a1a1aa'}}},scales:{x:{ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}},y:{ticks:{color:'#a1a1aa',callback:v=>v+'x'},grid:{color:'#2a2e3a'}}}}
   });
 };
-
 merChart('usMerChart',[4.52,7.33,8.52],[11.58,4.46,2.48]);
 merChart('auMerChart',[5.64,7.16,6.02],[3.31,3.24,2.86]);
 
-// ===== TARGETS =====
-function updateTargets(){
+// Target gap chart
+new Chart(document.getElementById('targetGapChart'),{
+  type:'bar',
+  data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],datasets:[
+    {label:'Actual (Q1) / Target (Q2)',data:[480000,453000,494000,800000,1116000,1119000],backgroundColor:['rgba(139,92,246,.6)','rgba(139,92,246,.6)','rgba(139,92,246,.6)','rgba(245,158,11,.6)','rgba(245,158,11,.6)','rgba(245,158,11,.6)'],borderRadius:6}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},title:{display:true,text:'AUD — Q1 Actual (purple) → Q2 Target (orange)',color:'#a1a1aa'}},scales:{x:{ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}},y:{ticks:{color:'#a1a1aa',callback:v=>'$'+v/1000+'K'},grid:{color:'#2a2e3a'}}}}
+});
+
+// Google MER calculator
+function updateGoogleMer(){
   const p=id=>parseInt((document.getElementById(id).value||'0').replace(/,/g,''));
+  const meta={Jan:77994,Feb:53722,Mar:68732};
+  const rev={Jan:462280,Feb:453352,Mar:494311};
   
-  const usCushieQ2=p('t-us-cushie-apr')+p('t-us-cushie-may')+p('t-us-cushie-jun');
-  const usSnugQ2=p('t-us-snug-apr')+p('t-us-snug-may')+p('t-us-snug-jun');
-  const usQ2=usCushieQ2+usSnugQ2;
-  
-  const auCushieQ2=p('t-au-cushie-apr')+p('t-au-cushie-may')+p('t-au-cushie-jun');
-  const auSnugQ2=p('t-au-snug-apr')+p('t-au-snug-may')+p('t-au-snug-jun');
-  const auQ2=auCushieQ2+auSnugQ2;
-  
-  document.getElementById('t-us-q2').textContent='$'+(usQ2/1000).toFixed(0)+'K USD';
-  document.getElementById('g-us-q2').innerHTML='<span class="tag tag-green">+'+((usQ2-586478)/586478*100).toFixed(0)+'% vs Q1</span>';
-  document.getElementById('t-au-q2').textContent='$'+(auQ2/1000).toFixed(0)+'K AUD';
-  
-  // Per-row growth tags
-  ['t-us-cushie-apr','t-us-snug-apr','t-us-cushie-may','t-us-snug-may','t-us-cushie-jun','t-us-snug-jun'].forEach(id=>{
-    const baselines={'t-us-cushie-apr':128773,'t-us-snug-apr':35535,'t-us-cushie-may':147672,'t-us-snug-may':41210,'t-us-cushie-jun':173637,'t-us-snug-jun':59651};
-    const gid='g-'+id.substring(2);
-    const base=baselines[id];
-    const v=p(id);
-    const growth=((v-base)/base*100).toFixed(0);
-    const el=document.getElementById(gid);
-    if(el)el.innerHTML='<span class="tag '+(v>base?'tag-green':'tag-red')+'">'+growth+'%</span>';
+  ['Jan','Feb','Mar'].forEach(m=>{
+    const g=p('goog-'+m.toLowerCase());
+    const total=meta[m]+g;
+    const mer=rev[m]/total;
+    document.getElementById('total-'+m.toLowerCase()).textContent='$'+total.toLocaleString();
+    document.getElementById('mer-'+m.toLowerCase()).innerHTML='<span class="tag '+(mer>4?'tag-green':(mer>3?'tag-yellow':'tag-red'))+'">'+mer.toFixed(2)+'x</span>';
   });
   
-  // Bridge chart
-  if(window.bridgeInst) window.bridgeInst.destroy();
-  window.bridgeInst=new Chart(document.getElementById('bridgeChart'),{
-    type:'bar',
-    data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],datasets:[
-      {label:'🛋️ US Cushie',data:[128773,147672,173637,p('t-us-cushie-apr'),p('t-us-cushie-may'),p('t-us-cushie-jun')],backgroundColor:C.cushie,borderRadius:4,stack:'us'},
-      {label:'🛏️ US Snuggle',data:[35535,41210,59651,p('t-us-snug-apr'),p('t-us-snug-may'),p('t-us-snug-jun')],backgroundColor:C.snuggle,borderRadius:4,stack:'us'}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#a1a1aa'}},title:{display:true,text:'US Stack — Cushie + Snuggle (USD)',color:'#a1a1aa'}},scales:{x:{stacked:true,ticks:{color:'#a1a1aa'},grid:{color:'#2a2e3a'}},y:{stacked:true,ticks:{color:'#a1a1aa',callback:v=>'$'+v/1000+'K'},grid:{color:'#2a2e3a'}}}}
-  });
+  const gq1=p('goog-jan')+p('goog-feb')+p('goog-mar');
+  const totalQ1=200448+gq1;
+  const merQ1=1409943/totalQ1;
+  document.getElementById('goog-q1').textContent='$'+gq1.toLocaleString();
+  document.getElementById('total-q1').textContent='$'+totalQ1.toLocaleString();
+  document.getElementById('mer-q1').innerHTML='<span class="tag '+(merQ1>4?'tag-green':(merQ1>3?'tag-yellow':'tag-red'))+'">'+merQ1.toFixed(2)+'x</span>';
 }
-updateTargets();
+updateGoogleMer();
 </script>
 </body>
 </html>
